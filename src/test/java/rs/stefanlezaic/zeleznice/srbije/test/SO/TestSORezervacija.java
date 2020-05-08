@@ -7,16 +7,13 @@ package rs.stefanlezaic.zeleznice.srbije.test.SO;
 
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Klijent;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Linija;
-import rs.stefanlezaic.zeleznice.srbije.lib.domen.MedjuStanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Polazak;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Rezervacija;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Stanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.TipLinije;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Voz;
-import rs.stefanlezaic.zeleznice.srbije.lib.exception.DeleteEntityException;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.EntityNotFoundException;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.InvalidProductException;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.After;
@@ -28,7 +25,6 @@ import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOUnesiRezervaciju;
 import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOVratiRezervacijeZaKlijenta;
 import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOVratiRezervacijeZaPolazak;
 import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOVratiRezervaciju;
-import rs.stefanlezaic.zeleznice.srbije.server.soStanica.SOUnesiStanicu;
 
 /**
  *

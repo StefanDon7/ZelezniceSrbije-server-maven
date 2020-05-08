@@ -13,10 +13,7 @@ import rs.stefanlezaic.zeleznice.srbije.lib.domen.Stanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.TipLinije;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Voz;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +22,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,7 +31,8 @@ import rs.stefanlezaic.zeleznice.srbije.server.modeli.tabela.ModelTabeleMedjusta
 import rs.stefanlezaic.zeleznice.srbije.server.modeli.tabela.ModelTabelePolaska;
 import rs.stefanlezaic.zeleznice.srbije.server.niti.PokreniServerNit;
 import rs.stefanlezaic.zeleznice.srbije.lib.sat.Sat;
-import javax.swing.UIManager;
+import rs.stefanlezaic.zeleznice.srbije.lib.kalendar.Kalendar;
+import rs.stefanlezaic.zeleznice.srbije.lib.swing.Tabela;
 import rs.stefanlezaic.zeleznice.srbije.lib.theme.Tema;
 
 /**
@@ -44,41 +41,33 @@ import rs.stefanlezaic.zeleznice.srbije.lib.theme.Tema;
  */
 public class FormaLinija extends javax.swing.JFrame {
 
-    ModelTabelePolaska mtp = new ModelTabelePolaska();
-    ModelTabelePolaska mtp1 = new ModelTabelePolaska();
     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
     ModelTabeleMedjustanica mtms = new ModelTabeleMedjustanica();
-    Sat s = new Sat();
-    Tema t = new Tema();
-    UIManager UI = new UIManager();
+    ModelTabelePolaska mtp = new ModelTabelePolaska();
+    ModelTabelePolaska mtsp = new ModelTabelePolaska();
+    Sat sat;
+    Tema tema;
+    Kalendar kalendar;
+    Tabela tabela;
 
     /**
      * Creates new form FormaLinija
      */
     public FormaLinija() {
         initComponents();
-        this.setSize(1336, 768);
-        lblWhiteMode.setVisible(true);
-        lblDarkMode.setVisible(false);
-        t.blackTheme(this);
         centrirajFrame();
+        tema = new Tema(this);
+        tabela = new Tabela(this);
+        kalendar = new Kalendar(cmbDani, cmbMeseci, cmbGodina);
+        kalendar.srediDaneMeseceGodinu();
+        sat = new Sat(lblSat);
+        ukljuciDarkMode();
         pokreniServer();
-        ulepsajTabelu(tabelaPolazaka);
-        ulepsajTabelu(tabelaMedjustanica);
-        ulepsajTabelu(tabelaSviPolasci);
-        dodajVozove();
-        dodajStanice();
-        dodajTipoveLinija();
-        dodajSveLinije();
-        dodajMesta();
-        srediDaneMeseceGodinu();
+        ucitajSveIzBaze();
         urediTabeluPolazaka();
-        urediTabeluMedjuStanica();
         urediTabeluSviPolasci();
-        panelPolazak.setVisible(false);
-        panelLinija.setVisible(true);
-        panelSviPolasci.setVisible(false);
-        s.sat(lblSat);
+        urediTabeluMedjuStanica();
+        pokreniPanelLinije();
     }
 
     /**
@@ -91,14 +80,6 @@ public class FormaLinija extends javax.swing.JFrame {
     private void initComponents() {
 
         lblSat = new javax.swing.JLabel();
-        panelSviPolasci = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tabelaSviPolasci = new javax.swing.JTable();
-        btnObrisiPolazakIzTabeleSviPolasci = new javax.swing.JButton();
-        btnUpdejtuj = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        cmbSortiraj = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         panelLinija = new javax.swing.JPanel();
         lblNazivFrejma = new javax.swing.JLabel();
         lblMin = new javax.swing.JLabel();
@@ -110,7 +91,7 @@ public class FormaLinija extends javax.swing.JFrame {
         lblTip = new javax.swing.JLabel();
         txtKilometraza = new javax.swing.JTextField();
         lblNaziv2 = new javax.swing.JLabel();
-        btnUnesiListuMedjustanica = new javax.swing.JButton();
+        btnIzmeniRedosledMedjustanica = new javax.swing.JButton();
         lblNazivLinijeKodTabele = new javax.swing.JLabel();
         txtMinutaza = new javax.swing.JTextField();
         lblNazivLinije = new javax.swing.JLabel();
@@ -168,10 +149,18 @@ public class FormaLinija extends javax.swing.JFrame {
         btnObrisiListu = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
+        panelSviPolasci = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaSviPolasci = new javax.swing.JTable();
+        btnObrisiPolazakIzTabeleSviPolasci = new javax.swing.JButton();
+        btnUpdejtuj = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        cmbSortiraj = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MeniLinijia = new javax.swing.JMenu();
         MeniPolazak = new javax.swing.JMenu();
-        meniSviPolasci = new javax.swing.JMenu();
+        MeniSviPolasci = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ZELEZNICE SRBIJE");
@@ -187,88 +176,6 @@ public class FormaLinija extends javax.swing.JFrame {
         lblSat.setToolTipText("");
         getContentPane().add(lblSat);
         lblSat.setBounds(930, 0, 360, 30);
-
-        panelSviPolasci.setBackground(new java.awt.Color(44, 44, 44));
-        panelSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
-        panelSviPolasci.setMinimumSize(new java.awt.Dimension(1550, 1000));
-        panelSviPolasci.setPreferredSize(new java.awt.Dimension(1500, 1000));
-        panelSviPolasci.setLayout(null);
-
-        tabelaSviPolasci.setBackground(new java.awt.Color(153, 153, 153));
-        tabelaSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
-        tabelaSviPolasci.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tabelaSviPolasci.setFocusable(false);
-        tabelaSviPolasci.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        tabelaSviPolasci.setRowHeight(25);
-        tabelaSviPolasci.setShowVerticalLines(false);
-        tabelaSviPolasci.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(tabelaSviPolasci);
-
-        panelSviPolasci.add(jScrollPane3);
-        jScrollPane3.setBounds(15, 50, 1270, 530);
-
-        btnObrisiPolazakIzTabeleSviPolasci.setBackground(new java.awt.Color(153, 153, 153));
-        btnObrisiPolazakIzTabeleSviPolasci.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnObrisiPolazakIzTabeleSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
-        btnObrisiPolazakIzTabeleSviPolasci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_delete_64px.png"))); // NOI18N
-        btnObrisiPolazakIzTabeleSviPolasci.setText("Obrisi polazak");
-        btnObrisiPolazakIzTabeleSviPolasci.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObrisiPolazakIzTabeleSviPolasciActionPerformed(evt);
-            }
-        });
-        panelSviPolasci.add(btnObrisiPolazakIzTabeleSviPolasci);
-        btnObrisiPolazakIzTabeleSviPolasci.setBounds(680, 590, 300, 50);
-
-        btnUpdejtuj.setBackground(new java.awt.Color(153, 153, 153));
-        btnUpdejtuj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnUpdejtuj.setForeground(new java.awt.Color(0, 0, 0));
-        btnUpdejtuj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_refresh_64px_1.png"))); // NOI18N
-        btnUpdejtuj.setText("Izmeni polaske");
-        btnUpdejtuj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdejtujActionPerformed(evt);
-            }
-        });
-        panelSviPolasci.add(btnUpdejtuj);
-        btnUpdejtuj.setBounds(990, 590, 300, 50);
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_list_32px_1.png"))); // NOI18N
-        jLabel4.setText("TABELA SVIH POLAZAKA:");
-        panelSviPolasci.add(jLabel4);
-        jLabel4.setBounds(15, 15, 300, 30);
-
-        cmbSortiraj.setBackground(new java.awt.Color(153, 153, 153));
-        cmbSortiraj.setForeground(new java.awt.Color(0, 0, 0));
-        cmbSortiraj.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "po datumu u opadajucem", "po datumu u rastucem ", "po liniji " }));
-        cmbSortiraj.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbSortirajItemStateChanged(evt);
-            }
-        });
-        panelSviPolasci.add(cmbSortiraj);
-        cmbSortiraj.setBounds(500, 15, 200, 30);
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_sort_32px_1.png"))); // NOI18N
-        jLabel5.setText("Sortiraj:");
-        panelSviPolasci.add(jLabel5);
-        jLabel5.setBounds(400, 15, 90, 30);
-
-        getContentPane().add(panelSviPolasci);
-        panelSviPolasci.setBounds(0, 0, 1336, 768);
 
         panelLinija.setBackground(new java.awt.Color(44, 44, 44));
         panelLinija.setForeground(new java.awt.Color(0, 0, 0));
@@ -356,18 +263,18 @@ public class FormaLinija extends javax.swing.JFrame {
         panelLinija.add(lblNaziv2);
         lblNaziv2.setBounds(630, 100, 130, 30);
 
-        btnUnesiListuMedjustanica.setBackground(new java.awt.Color(153, 153, 153));
-        btnUnesiListuMedjustanica.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnUnesiListuMedjustanica.setForeground(new java.awt.Color(0, 0, 0));
-        btnUnesiListuMedjustanica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_save_64px.png"))); // NOI18N
-        btnUnesiListuMedjustanica.setText("Izmeni redosled");
-        btnUnesiListuMedjustanica.addActionListener(new java.awt.event.ActionListener() {
+        btnIzmeniRedosledMedjustanica.setBackground(new java.awt.Color(153, 153, 153));
+        btnIzmeniRedosledMedjustanica.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnIzmeniRedosledMedjustanica.setForeground(new java.awt.Color(0, 0, 0));
+        btnIzmeniRedosledMedjustanica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_save_64px.png"))); // NOI18N
+        btnIzmeniRedosledMedjustanica.setText("Izmeni redosled");
+        btnIzmeniRedosledMedjustanica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUnesiListuMedjustanicaActionPerformed(evt);
+                btnIzmeniRedosledMedjustanicaActionPerformed(evt);
             }
         });
-        panelLinija.add(btnUnesiListuMedjustanica);
-        btnUnesiListuMedjustanica.setBounds(810, 550, 310, 50);
+        panelLinija.add(btnIzmeniRedosledMedjustanica);
+        btnIzmeniRedosledMedjustanica.setBounds(810, 550, 310, 50);
 
         lblNazivLinijeKodTabele.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblNazivLinijeKodTabele.setForeground(new java.awt.Color(255, 255, 255));
@@ -805,6 +712,88 @@ public class FormaLinija extends javax.swing.JFrame {
         getContentPane().add(panelPolazak);
         panelPolazak.setBounds(0, 0, 1336, 768);
 
+        panelSviPolasci.setBackground(new java.awt.Color(44, 44, 44));
+        panelSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
+        panelSviPolasci.setMinimumSize(new java.awt.Dimension(1550, 1000));
+        panelSviPolasci.setPreferredSize(new java.awt.Dimension(1500, 1000));
+        panelSviPolasci.setLayout(null);
+
+        tabelaSviPolasci.setBackground(new java.awt.Color(153, 153, 153));
+        tabelaSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
+        tabelaSviPolasci.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabelaSviPolasci.setFocusable(false);
+        tabelaSviPolasci.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tabelaSviPolasci.setRowHeight(25);
+        tabelaSviPolasci.setShowVerticalLines(false);
+        tabelaSviPolasci.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tabelaSviPolasci);
+
+        panelSviPolasci.add(jScrollPane3);
+        jScrollPane3.setBounds(15, 50, 1270, 530);
+
+        btnObrisiPolazakIzTabeleSviPolasci.setBackground(new java.awt.Color(153, 153, 153));
+        btnObrisiPolazakIzTabeleSviPolasci.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnObrisiPolazakIzTabeleSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
+        btnObrisiPolazakIzTabeleSviPolasci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_delete_64px.png"))); // NOI18N
+        btnObrisiPolazakIzTabeleSviPolasci.setText("Obrisi polazak");
+        btnObrisiPolazakIzTabeleSviPolasci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiPolazakIzTabeleSviPolasciActionPerformed(evt);
+            }
+        });
+        panelSviPolasci.add(btnObrisiPolazakIzTabeleSviPolasci);
+        btnObrisiPolazakIzTabeleSviPolasci.setBounds(680, 590, 300, 50);
+
+        btnUpdejtuj.setBackground(new java.awt.Color(153, 153, 153));
+        btnUpdejtuj.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnUpdejtuj.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpdejtuj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_refresh_64px_1.png"))); // NOI18N
+        btnUpdejtuj.setText("Izmeni polaske");
+        btnUpdejtuj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdejtujActionPerformed(evt);
+            }
+        });
+        panelSviPolasci.add(btnUpdejtuj);
+        btnUpdejtuj.setBounds(990, 590, 300, 50);
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_list_32px_1.png"))); // NOI18N
+        jLabel4.setText("TABELA SVIH POLAZAKA:");
+        panelSviPolasci.add(jLabel4);
+        jLabel4.setBounds(15, 15, 300, 30);
+
+        cmbSortiraj.setBackground(new java.awt.Color(153, 153, 153));
+        cmbSortiraj.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSortiraj.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "po datumu u opadajucem", "po datumu u rastucem ", "po liniji " }));
+        cmbSortiraj.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSortirajItemStateChanged(evt);
+            }
+        });
+        panelSviPolasci.add(cmbSortiraj);
+        cmbSortiraj.setBounds(500, 15, 200, 30);
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/icons8_sort_32px_1.png"))); // NOI18N
+        jLabel5.setText("Sortiraj:");
+        panelSviPolasci.add(jLabel5);
+        jLabel5.setBounds(400, 15, 90, 30);
+
+        getContentPane().add(panelSviPolasci);
+        panelSviPolasci.setBounds(0, 0, 1336, 768);
+
         jMenuBar1.setBackground(new java.awt.Color(187, 187, 187));
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(620, 80));
@@ -839,20 +828,20 @@ public class FormaLinija extends javax.swing.JFrame {
         });
         jMenuBar1.add(MeniPolazak);
 
-        meniSviPolasci.setBackground(new java.awt.Color(102, 102, 102));
-        meniSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
-        meniSviPolasci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/meni_lista_svi_polasci_100px.png"))); // NOI18N
-        meniSviPolasci.setText("Svi polasci");
-        meniSviPolasci.setAlignmentX(1.0F);
-        meniSviPolasci.setAlignmentY(1.0F);
-        meniSviPolasci.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        meniSviPolasci.setPreferredSize(new java.awt.Dimension(220, 50));
-        meniSviPolasci.addMouseListener(new java.awt.event.MouseAdapter() {
+        MeniSviPolasci.setBackground(new java.awt.Color(102, 102, 102));
+        MeniSviPolasci.setForeground(new java.awt.Color(0, 0, 0));
+        MeniSviPolasci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/meni_lista_svi_polasci_100px.png"))); // NOI18N
+        MeniSviPolasci.setText("Svi polasci");
+        MeniSviPolasci.setAlignmentX(1.0F);
+        MeniSviPolasci.setAlignmentY(1.0F);
+        MeniSviPolasci.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        MeniSviPolasci.setPreferredSize(new java.awt.Dimension(220, 50));
+        MeniSviPolasci.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                meniSviPolasciMouseClicked(evt);
+                MeniSviPolasciMouseClicked(evt);
             }
         });
-        jMenuBar1.add(meniSviPolasci);
+        jMenuBar1.add(MeniSviPolasci);
 
         setJMenuBar(jMenuBar1);
 
@@ -888,13 +877,12 @@ public class FormaLinija extends javax.swing.JFrame {
                     null,//do not use a custom Icon
                     options,//the titles of buttons
                     options[1]);//default button title
-
             if (n == 0) {
                 try {
                     Kontroler.getInstance().obrisiMedjustanicu(m);
                     JOptionPane.showMessageDialog(this, "Uspesno ste obrisali medjustanicu iz baze!");
                     mtms.obrisi(red);
-                    btnUnesiListuMedjustanicaActionPerformed(evt);
+                    btnIzmeniRedosledMedjustanicaActionPerformed(evt);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.toString());
                 }
@@ -934,7 +922,7 @@ public class FormaLinija extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUnesiLinijuActionPerformed
 
     //************************TODO***************************************//
-    private void btnUnesiListuMedjustanicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnesiListuMedjustanicaActionPerformed
+    private void btnIzmeniRedosledMedjustanicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniRedosledMedjustanicaActionPerformed
         ArrayList<MedjuStanica> list = mtms.vratiListu();
         if (!list.isEmpty()) {
             try {
@@ -943,28 +931,24 @@ public class FormaLinija extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "GRESKA!\nNeuspesno sacuvano!");
             }
-            cmbLinijeItemStateChangedMethod();
+            promeniMedjustaniceZaLiniju();
         }
 
-    }//GEN-LAST:event_btnUnesiListuMedjustanicaActionPerformed
+    }//GEN-LAST:event_btnIzmeniRedosledMedjustanicaActionPerformed
 
-//************************TO DO***************************************//
+    //************************TO DO***************************************//
     private void cmbLinijeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLinijeItemStateChanged
-        cmbLinijeItemStateChangedMethod();
+        promeniMedjustaniceZaLiniju();
     }//GEN-LAST:event_cmbLinijeItemStateChanged
 
     //************************POSTAVI DANE KADA SE KLIKNE NA ODGOVARAJUCI MESEC U KOMBO BOX**************************************//
     private void cmbMeseciItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMeseciItemStateChanged
-        int index = cmbMeseci.getSelectedIndex();
-        int godina = (int) cmbGodina.getSelectedItem();
-        postaviDaneZaOdredjeniMesecIGodinu(index, godina);
+        kalendar.promena();
     }//GEN-LAST:event_cmbMeseciItemStateChanged
 
     //************************POSTAVI DANE KADA SE KLIKNE NA ODGOVOARAJUCU GODINU U KOMBO BOX***************************************//
     private void cmbGodinaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbGodinaItemStateChanged
-        int index = cmbMeseci.getSelectedIndex();
-        int godina = (int) cmbGodina.getSelectedItem();
-        postaviDaneZaOdredjeniMesecIGodinu(index, godina);
+        kalendar.promena();
     }//GEN-LAST:event_cmbGodinaItemStateChanged
 
     //************************DODAJ POLAZAK***************************************//
@@ -1068,7 +1052,7 @@ public class FormaLinija extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnDodajPolazakActionPerformed
-//************************TO DOOO***************************************//
+
     private void btnZapamtiPolaskeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZapamtiPolaskeActionPerformed
         ArrayList<Polazak> list = mtp.vratiListu();
         if (list.isEmpty()) {
@@ -1078,7 +1062,7 @@ public class FormaLinija extends javax.swing.JFrame {
         try {
             Kontroler.getInstance().unesiSvePolazke(list);
             JOptionPane.showMessageDialog(this, "Uspesno ste uneli listu polazaka!");
-            mtp.izbrisiListu();
+            mtp.obrisiListu();
             return;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Neuspesan unos liste polazaka!");
@@ -1094,15 +1078,11 @@ public class FormaLinija extends javax.swing.JFrame {
     }//GEN-LAST:event_btnObrisiPolazakActionPerformed
 
     private void MeniLinijiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MeniLinijiaMouseClicked
-        panelPolazak.setVisible(false);
-        panelLinija.setVisible(true);
-        panelSviPolasci.setVisible(false);
+        pokreniPanelLinije();
     }//GEN-LAST:event_MeniLinijiaMouseClicked
 
     private void MeniPolazakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MeniPolazakMouseClicked
-        panelPolazak.setVisible(true);
-        panelLinija.setVisible(false);
-        panelSviPolasci.setVisible(false);
+        pokreniPanelPolazak();
     }//GEN-LAST:event_MeniPolazakMouseClicked
 
     private void btnObrisiLinijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiLinijuActionPerformed
@@ -1128,12 +1108,10 @@ public class FormaLinija extends javax.swing.JFrame {
         dodajSveLinije();
     }//GEN-LAST:event_btnObrisiLinijuActionPerformed
 
-    private void meniSviPolasciMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_meniSviPolasciMouseClicked
-        panelPolazak.setVisible(false);
-        panelLinija.setVisible(false);
-        panelSviPolasci.setVisible(true);
-        urediTabeluSviPolasci();
-    }//GEN-LAST:event_meniSviPolasciMouseClicked
+    private void MeniSviPolasciMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MeniSviPolasciMouseClicked
+        pokreniPanelSviPolasci();
+        dodajPolaske();
+    }//GEN-LAST:event_MeniSviPolasciMouseClicked
 
     private void btnUnesiStanicuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnesiStanicuActionPerformed
         String naziv = txtNazivStanice.getText();
@@ -1175,7 +1153,7 @@ public class FormaLinija extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selektujte polazak koji zelite da obrisete!");
             return;
         } else {
-            Polazak p = mtp1.getList().get(broj);
+            Polazak p = mtsp.getList().get(broj);
             Object[] options = {"Da", "Ne"};
             int n = JOptionPane.showOptionDialog(this,//parent container of JOptionPane
                     "Da li zaista zelite da obrisete polazak:" + p.getNaziv() + "?",
@@ -1189,8 +1167,8 @@ public class FormaLinija extends javax.swing.JFrame {
                 try {
                     Kontroler.getInstance().obrisiPolazak(p);
                     JOptionPane.showMessageDialog(this, "Uspesno ste obrisali polazak!");
-                    mtp1.obrisi(broj);
-                    mtp1.fireTableDataChanged();
+                    mtsp.obrisi(broj);
+                    mtsp.fireTableDataChanged();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Ne mozete obrisati ovaj polazak!");
                 }
@@ -1204,7 +1182,7 @@ public class FormaLinija extends javax.swing.JFrame {
         if (broj == -1) {
             return;
         }
-        ArrayList<Polazak> polasci = mtp1.getList();
+        ArrayList<Polazak> polasci = mtsp.getList();
         Collections.sort(polasci, new Comparator<Polazak>() {
             @Override
             public int compare(Polazak o1, Polazak o2) {
@@ -1228,12 +1206,12 @@ public class FormaLinija extends javax.swing.JFrame {
                 return 0;
             }
         });
-        mtp1.setList(polasci);
+        mtsp.setList(polasci);
 
     }//GEN-LAST:event_cmbSortirajItemStateChanged
 
     private void btnUpdejtujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdejtujActionPerformed
-        ArrayList<Polazak> sviPolasci = mtp1.getList();
+        ArrayList<Polazak> sviPolasci = mtsp.getList();
         ArrayList<Polazak> polasciZaMenjanje = new ArrayList<>();
         for (Polazak polazak : sviPolasci) {
             if (polazak.getNapomena() == null || !polazak.getNapomena().isEmpty()) {
@@ -1264,20 +1242,15 @@ public class FormaLinija extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdejtujActionPerformed
 
     private void btnObrisiListuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiListuActionPerformed
-        mtp.setList(new ArrayList<Polazak>());
-        mtp.fireTableDataChanged();
+        mtp.obrisiListu();
     }//GEN-LAST:event_btnObrisiListuActionPerformed
 
     private void lblDarkModeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDarkModeMouseClicked
-        lblWhiteMode.setVisible(true);
-        lblDarkMode.setVisible(false);
-        t.blackTheme(this);
+        ukljuciDarkMode();
     }//GEN-LAST:event_lblDarkModeMouseClicked
 
     private void lblWhiteModeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblWhiteModeMouseClicked
-        lblWhiteMode.setVisible(false);
-        lblDarkMode.setVisible(true);
-        t.whiteTheme(this);
+        iskljuciDarkMode();
     }//GEN-LAST:event_lblWhiteModeMouseClicked
 
     /**
@@ -1326,8 +1299,10 @@ public class FormaLinija extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MeniLinijia;
     private javax.swing.JMenu MeniPolazak;
+    private javax.swing.JMenu MeniSviPolasci;
     private javax.swing.JButton btnDodajMedjustanicu;
     private javax.swing.JButton btnDodajPolazak;
+    private javax.swing.JButton btnIzmeniRedosledMedjustanica;
     private javax.swing.JLabel btnLinija;
     private javax.swing.JButton btnObrisiLiniju;
     private javax.swing.JButton btnObrisiListu;
@@ -1335,7 +1310,6 @@ public class FormaLinija extends javax.swing.JFrame {
     private javax.swing.JButton btnObrisiPolazak;
     private javax.swing.JButton btnObrisiPolazakIzTabeleSviPolasci;
     private javax.swing.JButton btnUnesiLiniju;
-    private javax.swing.JButton btnUnesiListuMedjustanica;
     private javax.swing.JButton btnUnesiStanicu;
     private javax.swing.JButton btnUpdejtuj;
     private javax.swing.JButton btnZapamtiPolaske;
@@ -1394,7 +1368,6 @@ public class FormaLinija extends javax.swing.JFrame {
     private javax.swing.JLabel lblWhiteMode;
     private javax.swing.JLabel lblpocetna;
     private javax.swing.JLabel lblpocetna1;
-    private javax.swing.JMenu meniSviPolasci;
     private javax.swing.JPanel panelLinija;
     private javax.swing.JPanel panelPolazak;
     private javax.swing.JPanel panelSviPolasci;
@@ -1413,6 +1386,7 @@ public class FormaLinija extends javax.swing.JFrame {
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
         setLocationRelativeTo(null);
+        this.setSize(1336, 768);
     }
 
     private void pokreniServer() {
@@ -1499,66 +1473,68 @@ public class FormaLinija extends javax.swing.JFrame {
         }
     }
 
-    private void urediTabeluSviPolasci() {
-        tabelaSviPolasci.setModel(mtp1);
+    private void dodajPolaske() {
+        tabelaSviPolasci.setModel(mtsp);
         ArrayList<Polazak> polasci = null;
         try {
             polasci = Kontroler.getInstance().vratiListuPolazaka();
-
         } catch (Exception ex) {
             Logger.getLogger(FormaLinija.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
-        mtp1.setList(polasci);
-        mtp1.fireTableDataChanged();
+        mtsp.setList(polasci);
+        mtsp.fireTableDataChanged();
+    }
+
+    private void ucitajSveIzBaze() {
+        dodajMesta();
+        dodajVozove();
+        dodajTipoveLinija();
+        dodajStanice();
+        dodajSveLinije();
+        dodajPolaske();
     }
 
     private void urediTabeluPolazaka() {
         tabelaPolazaka.setModel(mtp);
+        tabelaPolazaka.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabelaPolazaka.getColumnModel().getColumn(0).setResizable(false);
+        tabelaPolazaka.getColumnModel().getColumn(1).setResizable(false);
+        tabelaPolazaka.getColumnModel().getColumn(2).setResizable(false);
+        tabelaPolazaka.getColumnModel().getColumn(3).setResizable(false);
+        tabelaPolazaka.getColumnModel().getColumn(4).setResizable(false);
+        tabelaPolazaka.getColumnModel().getColumn(0).setWidth(25);
+        tabelaPolazaka.getColumnModel().getColumn(1).setMaxWidth(519);
+        tabelaPolazaka.getColumnModel().getColumn(1).setMinWidth(519);
+        tabelaPolazaka.getColumnModel().getColumn(2).setMaxWidth(120);
+        tabelaPolazaka.getColumnModel().getColumn(2).setMinWidth(120);
+        tabelaPolazaka.getColumnModel().getColumn(3).setMaxWidth(120);
+        tabelaPolazaka.getColumnModel().getColumn(3).setMinWidth(120);
+        tabelaPolazaka.getColumnModel().getColumn(4).setMaxWidth(70);
+        tabelaPolazaka.getColumnModel().getColumn(4).setMinWidth(70);
+        tabelaPolazaka.getColumnModel().getColumn(5).setMaxWidth(250);
+        tabelaPolazaka.getColumnModel().getColumn(5).setMinWidth(250);
     }
 
-    private void srediDaneMeseceGodinu() {
-        cmbDani.removeAllItems();
-        cmbGodina.removeAllItems();
-        GregorianCalendar gc = new GregorianCalendar();
-        int godina = gc.get(Calendar.YEAR);
-        int mesec = gc.get(Calendar.MONTH);
-        int dan = gc.get(Calendar.DAY_OF_MONTH);
-        for (int i = godina; i < godina + 10; i++) {
-            cmbGodina.addItem(i);
-        }
-        postaviDaneZaOdredjeniMesecIGodinu(mesec, godina);
-        cmbGodina.setSelectedItem(godina);
-        cmbMeseci.setSelectedIndex(mesec);
-        cmbDani.setSelectedItem(dan);
-    }
-
-    private void postaviDaneZaOdredjeniMesecIGodinu(int index, int godina) {
-        if (cmbMeseci.getSelectedIndex() == 1) {
-            if (godina % 4 == 0) {
-                cmbDani.removeAllItems();
-                for (int i = 1; i <= 29; i++) {
-                    cmbDani.addItem(i);
-                }
-            } else {
-                cmbDani.removeAllItems();
-                for (int i = 1; i <= 28; i++) {
-                    cmbDani.addItem(i);
-                }
-            }
-        }
-        if (index == 0 || index == 2 || index == 4 || index == 6 || index == 7 || index == 9 || index == 11) {
-            cmbDani.removeAllItems();
-            for (int i = 1; i <= 31; i++) {
-                cmbDani.addItem(i);
-            }
-        }
-        if (index == 3 || index == 5 || index == 8 || index == 10) {
-            cmbDani.removeAllItems();
-            for (int i = 1; i <= 30; i++) {
-                cmbDani.addItem(i);
-            }
-        }
+    private void urediTabeluSviPolasci() {
+        tabelaSviPolasci.setModel(mtsp);
+        tabelaSviPolasci.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabelaSviPolasci.getColumnModel().getColumn(0).setResizable(false);
+        tabelaSviPolasci.getColumnModel().getColumn(1).setResizable(false);
+        tabelaSviPolasci.getColumnModel().getColumn(2).setResizable(false);
+        tabelaSviPolasci.getColumnModel().getColumn(3).setResizable(false);
+        tabelaSviPolasci.getColumnModel().getColumn(4).setResizable(false);
+        tabelaSviPolasci.getColumnModel().getColumn(0).setWidth(25);
+        tabelaSviPolasci.getColumnModel().getColumn(1).setMaxWidth(400);
+        tabelaSviPolasci.getColumnModel().getColumn(1).setMinWidth(400);
+        tabelaSviPolasci.getColumnModel().getColumn(2).setMaxWidth(200);
+        tabelaSviPolasci.getColumnModel().getColumn(2).setMinWidth(200);
+        tabelaSviPolasci.getColumnModel().getColumn(3).setMaxWidth(200);
+        tabelaSviPolasci.getColumnModel().getColumn(3).setMinWidth(200);
+        tabelaSviPolasci.getColumnModel().getColumn(4).setMaxWidth(115);
+        tabelaSviPolasci.getColumnModel().getColumn(4).setMinWidth(115);
+        tabelaSviPolasci.getColumnModel().getColumn(5).setMaxWidth(250);
+        tabelaSviPolasci.getColumnModel().getColumn(5).setMinWidth(250);
 
     }
 
@@ -1574,17 +1550,7 @@ public class FormaLinija extends javax.swing.JFrame {
 
     }
 
-    public void ulepsajTabelu(JTable tabela) {
-        tabela.setRowHeight(25);
-        tabela.setFocusable(false);
-        tabela.setShowVerticalLines(false);
-        tabela.setSelectionBackground(Color.LIGHT_GRAY);
-        tabela.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tabela.getTableHeader().setOpaque(false);
-        tabela.setRowHeight(25);
-    }
-
-    private void cmbLinijeItemStateChangedMethod() {
+    private void promeniMedjustaniceZaLiniju() {
         mtms.izbrisiListu();
         Linija l = (Linija) cmbLinije.getSelectedItem();
         if (l == null) {
@@ -1594,7 +1560,6 @@ public class FormaLinija extends javax.swing.JFrame {
         ArrayList<MedjuStanica> lista = null;
         try {
             lista = Kontroler.getInstance().vratiMiSveMedjustaniceZaLiniju(new MedjuStanica(null, l, -1));
-
         } catch (Exception ex) {
             Logger.getLogger(FormaLinija.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -1602,17 +1567,34 @@ public class FormaLinija extends javax.swing.JFrame {
         mtms.setList(lista);
     }
 
-    public static List<Component> getAllComponents(final Container c) {
-        Component[] comps = c.getComponents();
-        List<Component> compList = new ArrayList<Component>();
-        for (Component comp : comps) {
-            compList.add(comp);
-            if (comp instanceof Container) {
-                compList.addAll(getAllComponents((Container) comp));
-            }
-        }
+    private void ukljuciDarkMode() {
+        lblWhiteMode.setVisible(true);
+        lblDarkMode.setVisible(false);
+        tema.blackTheme();
+    }
 
-        return compList;
+    private void iskljuciDarkMode() {
+        lblWhiteMode.setVisible(false);
+        lblDarkMode.setVisible(true);
+        tema.whiteTheme();
+    }
+
+    private void pokreniPanelLinije() {
+        panelLinija.setVisible(true);
+        panelPolazak.setVisible(false);
+        panelSviPolasci.setVisible(false);
+    }
+
+    private void pokreniPanelPolazak() {
+        panelLinija.setVisible(false);
+        panelPolazak.setVisible(true);
+        panelSviPolasci.setVisible(false);
+    }
+
+    private void pokreniPanelSviPolasci() {
+        panelLinija.setVisible(false);
+        panelPolazak.setVisible(false);
+        panelSviPolasci.setVisible(true);
     }
 
 }

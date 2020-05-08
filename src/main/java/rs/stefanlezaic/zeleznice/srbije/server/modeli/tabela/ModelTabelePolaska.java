@@ -115,10 +115,8 @@ public class ModelTabelePolaska extends AbstractTableModel {
         return list;
     }
 
-    public void izbrisiListu() {
-        for (int i = list.size() - 1; i >= 0; i--) {
-            obrisi(i);
-        }
+    public void obrisiListu() {
+        this.list = new ArrayList<>();
         fireTableDataChanged();
     }
 
