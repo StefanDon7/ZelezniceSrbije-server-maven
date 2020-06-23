@@ -113,7 +113,7 @@ public class TestSOKlijent {
         ago1.templateExecute(k);
     }
 
-    //zasto baca SQL A NE INSERTEXCEPTION
+    
     @Test(expected = SQLException.class)
     public void testSOUnesi_Postoji() throws Exception {
         k = new Klijent(10, "prazno", "prazno", "prazno", "prazno", "s.lezaic95@gmail.com");
