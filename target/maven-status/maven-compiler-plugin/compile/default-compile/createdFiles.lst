@@ -15,10 +15,12 @@ rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$19.class
 rs\stefanlezaic\zeleznice\srbije\server\kontroler\Kontroler.class
 rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$8.class
 rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOVratiMedjustanicu.class
+rs\stefanlezaic\zeleznice\srbije\server\json\JsonFile.class
 rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$15.class
 rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOVratiPolazakZaDatum.class
 rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$1.class
 rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOVratiSveMedjustaniceZaLiniju.class
+main\main.class
 rs\stefanlezaic\zeleznice\srbije\server\database\IDatabaseBroker.class
 rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOObrisiMedjustanicu.class
 rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOIzmeniPolazak.class
@@ -63,6 +65,7 @@ rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$5.class
 rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$11.class
 rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOObrisiPolazak.class
 rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOVratiSveMedjustanice.class
+rs\stefanlezaic\zeleznice\srbije\server\json\JsonFile$1.class
 rs\stefanlezaic\zeleznice\srbije\server\modeli\tabela\ModelTabeleMedjustanica.class
 rs\stefanlezaic\zeleznice\srbije\server\soKlijent\SOUnesiKlijenta.class
 rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija.class

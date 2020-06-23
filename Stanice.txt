@@ -1,0 +1,10 @@
+[
+  {
+    "stanicaID": 150,
+    "naziv": "dagsdg",
+    "mesto": {
+      "mestoID": 125,
+      "naziv": "ASDGag"
+    }
+  }
+]

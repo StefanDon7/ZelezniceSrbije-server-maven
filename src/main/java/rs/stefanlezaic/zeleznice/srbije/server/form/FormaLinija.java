@@ -5,6 +5,14 @@
  */
 package rs.stefanlezaic.zeleznice.srbije.server.form;
 
+import rs.stefanlezaic.zeleznice.srbije.server.kontroler.Kontroler;
+import rs.stefanlezaic.zeleznice.srbije.server.modeli.tabela.ModelTabeleMedjustanica;
+import rs.stefanlezaic.zeleznice.srbije.server.modeli.tabela.ModelTabelePolaska;
+import rs.stefanlezaic.zeleznice.srbije.server.niti.PokreniServerNit;
+import rs.stefanlezaic.zeleznice.srbije.lib.sat.Sat;
+import rs.stefanlezaic.zeleznice.srbije.lib.kalendar.Kalendar;
+import rs.stefanlezaic.zeleznice.srbije.lib.swing.Tabela;
+import rs.stefanlezaic.zeleznice.srbije.lib.theme.Tema;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Linija;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.MedjuStanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Mesto;
@@ -22,18 +30,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import rs.stefanlezaic.zeleznice.srbije.server.kontroler.Kontroler;
-import rs.stefanlezaic.zeleznice.srbije.server.modeli.tabela.ModelTabeleMedjustanica;
-import rs.stefanlezaic.zeleznice.srbije.server.modeli.tabela.ModelTabelePolaska;
-import rs.stefanlezaic.zeleznice.srbije.server.niti.PokreniServerNit;
-import rs.stefanlezaic.zeleznice.srbije.lib.sat.Sat;
-import rs.stefanlezaic.zeleznice.srbije.lib.kalendar.Kalendar;
-import rs.stefanlezaic.zeleznice.srbije.lib.swing.Tabela;
-import rs.stefanlezaic.zeleznice.srbije.lib.theme.Tema;
+import rs.stefanlezaic.zeleznice.srbije.server.json.JsonFile;
+
 
 /**
  *
@@ -45,6 +48,7 @@ public class FormaLinija extends javax.swing.JFrame {
     ModelTabeleMedjustanica mtms = new ModelTabeleMedjustanica();
     ModelTabelePolaska mtp = new ModelTabelePolaska();
     ModelTabelePolaska mtsp = new ModelTabelePolaska();
+    JsonFile js=new JsonFile();
     Sat sat;
     Tema tema;
     Kalendar kalendar;
@@ -117,9 +121,9 @@ public class FormaLinija extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
         lblDarkMode = new javax.swing.JLabel();
         lblWhiteMode = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
         panelPolazak = new javax.swing.JPanel();
         lblNaziv4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -449,11 +453,6 @@ public class FormaLinija extends javax.swing.JFrame {
         panelLinija.add(jLabel7);
         jLabel7.setBounds(300, 220, 30, 30);
 
-        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        panelLinija.add(jSeparator5);
-        jSeparator5.setBounds(15, 345, 470, 10);
-
         lblDarkMode.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblDarkMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rs/stefanlezaic/zeleznice/srbije/server/resources/icons/darkMode.png"))); // NOI18N
         lblDarkMode.setText("Dark theme");
@@ -475,6 +474,11 @@ public class FormaLinija extends javax.swing.JFrame {
         });
         panelLinija.add(lblWhiteMode);
         lblWhiteMode.setBounds(1131, 50, 190, 50);
+
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        panelLinija.add(jSeparator6);
+        jSeparator6.setBounds(15, 345, 470, 10);
 
         getContentPane().add(panelLinija);
         panelLinija.setBounds(0, 0, 1336, 768);
@@ -858,7 +862,7 @@ public class FormaLinija extends javax.swing.JFrame {
             Kontroler.getInstance().unesiMedjustanicu(m);
             mtms.dodajUTabelu(m);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString());
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnDodajMedjustanicuActionPerformed
 
@@ -884,7 +888,7 @@ public class FormaLinija extends javax.swing.JFrame {
                     mtms.obrisi(red);
                     btnIzmeniRedosledMedjustanicaActionPerformed(evt);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex.toString());
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
             }
         } else {
@@ -911,7 +915,7 @@ public class FormaLinija extends javax.swing.JFrame {
             Kontroler.getInstance().unesiLiniju(l);
             JOptionPane.showMessageDialog(this, "Uspesno sacuvana linija: " + lblNazivLinije.getText() + "!");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.toString());
+            JOptionPane.showMessageDialog(this, ex.getMessage());
             lblNazivLinije.setText("");
         } finally {
             txtKilometraza.setText("");
@@ -1102,7 +1106,7 @@ public class FormaLinija extends javax.swing.JFrame {
                 Kontroler.getInstance().obrisiLiniju(l);
                 JOptionPane.showMessageDialog(this, "Uspesno ste obrisali liniju: " + l.getNaziv() + ".");
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Neuspesno operacija brisanja linije: " + l.getNaziv() + ".");
+                JOptionPane.showMessageDialog(this, ex.getMessage());
             }
         }
         dodajSveLinije();
@@ -1125,6 +1129,8 @@ public class FormaLinija extends javax.swing.JFrame {
         try {
             Kontroler.getInstance().unesiNovuStanicu(s);
             JOptionPane.showMessageDialog(this, "Uspesno ste uneli stanicu!");
+            //Dodavanje u json file Stanica.txt
+            js.ucitajIzBazeStaniceISacuvaj("Stanice.txt");
             txtNazivStanice.setText("");
         } catch (Exception ex1) {
             JOptionPane.showMessageDialog(this, "Neuspesna operacija unosa stanice!");
@@ -1139,7 +1145,7 @@ public class FormaLinija extends javax.swing.JFrame {
         if (l != null) {
             Linija linijaZaPretrazivanje = new Linija(-1, "", 0, 0, l.getStanicaKrajnja(), l.getStanicaPocetna(), l.getTipLinije());
             try {
-                Linija linijaPovratna = Kontroler.getInstance().vratiLinijuNaOsnovuStanicaITipa(linijaZaPretrazivanje);
+                Kontroler.getInstance().vratiLinijuNaOsnovuStanicaITipa(linijaZaPretrazivanje);
                 cboxPovratna.setEnabled(true);
             } catch (Exception ex) {
                 cboxPovratna.setEnabled(false);
@@ -1342,7 +1348,7 @@ public class FormaLinija extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel lblDarkMode;
     private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblDatum1;
@@ -1406,6 +1412,19 @@ public class FormaLinija extends javax.swing.JFrame {
             Logger.getLogger(FormaLinija.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
+        for (Stanica stanica : list) {
+            cmbPocetna.addItem(stanica);
+            cmbKrajnja.addItem(stanica);
+            cmbMedjustanica.addItem(stanica);
+        }
+    }
+        private void dodajStanice_Iz_Fajla() {
+        List<Stanica> list=js.ucitajSveStanice("Stanice.txt");
+        cmbPocetna.removeAllItems();
+        cmbKrajnja.removeAllItems();
+        cmbMedjustanica.removeAllItems();
+      
+     
         for (Stanica stanica : list) {
             cmbPocetna.addItem(stanica);
             cmbKrajnja.addItem(stanica);
@@ -1490,6 +1509,7 @@ public class FormaLinija extends javax.swing.JFrame {
         dodajMesta();
         dodajVozove();
         dodajTipoveLinija();
+//        dodajStanice_Iz_Fajla();
         dodajStanice();
         dodajSveLinije();
         dodajPolaske();
@@ -1556,7 +1576,6 @@ public class FormaLinija extends javax.swing.JFrame {
         if (l == null) {
             return;
         }
-        lblNazivLinijeKodTabele.setText("Lista medjustanica za liniju: " + l.getNaziv());
         ArrayList<MedjuStanica> lista = null;
         try {
             lista = Kontroler.getInstance().vratiMiSveMedjustaniceZaLiniju(new MedjuStanica(null, l, -1));
