@@ -67,7 +67,7 @@ public class TestLinija {
     }
 
     @Test
-    public void testKlijentiNisuIsti() {
+    public void testLinijeNisuIste() {
         Stanica s1=new Stanica(10, "stanica", new Mesto(10, "mesto"));
         Stanica s12=new Stanica(1012, "stanica12", new Mesto(1012, "mesto12"));
         Stanica s2=new Stanica(101, "stanica2", new Mesto(101, "mesto2"));
@@ -77,7 +77,7 @@ public class TestLinija {
         assertFalse(l.equals(l2));
     }
      @Test
-    public void testKlijentiNisuIsti2() {
+    public void TestLinijeNisuIste2() {
         Stanica s1=new Stanica(10, "stanica", new Mesto(10, "mesto"));
         Stanica s12=new Stanica(1012, "stanica12", new Mesto(1012, "mesto12"));
         Stanica s2=new Stanica(101, "stanica2", new Mesto(101, "mesto2"));
@@ -87,7 +87,7 @@ public class TestLinija {
         assertFalse(l.equals(l2));
     }
        @Test
-    public void testKlijentiNisuIsti3() {
+    public void testLinijeNisuIste3() {
         Stanica s1=new Stanica(10, "stanica", new Mesto(10, "mesto"));
         Stanica s2=new Stanica(101, "stanica2", new Mesto(101, "mesto2"));
         TipLinije tip=new TipLinije(12, "tip");

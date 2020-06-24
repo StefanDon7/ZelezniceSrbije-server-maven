@@ -75,12 +75,12 @@ public class TestRezervacija {
       
 
     @Test
-    public void testKlijentiJedanNull() {
+    public void testRezervacijaJeJednakaNuli() {
         assertFalse(r.equals(null));
     }
 
     @Test
-    public void testKlijentiNijeInstanca() {
+    public void testRezervacijaKlaseObject() {
         assertFalse(r.equals(new Object()));
     }
 
