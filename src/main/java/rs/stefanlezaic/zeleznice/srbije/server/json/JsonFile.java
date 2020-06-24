@@ -35,7 +35,7 @@ public class JsonFile {
 	}
 
 	public void sacuvajStanicu(String json_file_name, Stanica stanica) {
-            List<Stanica> stanice =ucitajSveStanice("Stanice.txt");
+            List<Stanica> stanice = ucitajSveStanice_TypeToken("Stanice.txt");
             stanice.add(stanica);
             try (FileWriter out =new FileWriter(json_file_name)){
 			Gson gson=new GsonBuilder().setPrettyPrinting().create();
@@ -46,19 +46,19 @@ public class JsonFile {
 	}
         
       public List<Stanica> ucitajSveStanice(String json_file_name) {
-          List<Stanica> mestaLista=new ArrayList<>();
+          List<Stanica> staniceLista=new ArrayList<>();
           try (FileReader in =new FileReader(json_file_name)){
 			Gson gson=new GsonBuilder().create();
 			Stanica[] niz=gson.fromJson(in, Stanica[].class);
-			mestaLista=Arrays.asList(niz);
+			staniceLista=Arrays.asList(niz);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-          return mestaLista;
+          return staniceLista;
 	}
       
      
-	public ArrayList<Stanica> ucitajSveStanice_TypeToken(String json_file_name) {
+	private ArrayList<Stanica> ucitajSveStanice_TypeToken(String json_file_name) {
             ArrayList<Stanica> stanice=new ArrayList<>();
             try (FileReader in =new FileReader(json_file_name)){
 			Gson gson=new Gson();

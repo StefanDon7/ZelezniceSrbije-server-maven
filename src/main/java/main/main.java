@@ -19,19 +19,23 @@ public class main {
     public static void main(String[] args) throws Exception {
      JsonFile jf=new JsonFile();
      
+    //Ucitaj iz baze i upisi u fajl
+    //jf.ucitajIzBazeStaniceISacuvaj("Stanice.txt");
 
-     List<Stanica> lista=jf.ucitajSveStanice("Stanice.txt");
-//        List<Stanica> lista2=jf.ucitajSveStanice_TypeToken("Stanice.txt");
-//        for (Stanica stanica : lista) {
-//            System.out.println(stanica.toString());
-//        }
-//        System.out.println("?????????????????????????");
+
+
+//    Ucitaj iz fajla
+//    List<Stanica> lista2=jf.ucitajSveStanice_TypeToken("Stanice.txt");
+//    for (Stanica stanica : lista2) {
+//        System.out.println(stanica.toString());
+//    }
+//    System.out.println("?????????????????????????");
         
-       Stanica s=new  Stanica(150, "dagsdg", new Mesto(125, "ASDGag"));
-        jf.sacuvajStanicu("Stanice.txt",  s);
-//        for (Stanica stanica : lista2) {
-//             System.out.println(stanica.toString());
-//        }
+
+// dodaj stanicu
+//       Stanica s=new  Stanica(150, "dagsdg", new Mesto(125, "ASDGag"));
+//        jf.sacuvajStanicu("Stanice.txt",  s);
+        
 
 
     }

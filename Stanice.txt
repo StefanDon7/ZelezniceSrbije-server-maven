@@ -1,10 +1,202 @@
 [
   {
-    "stanicaID": 150,
-    "naziv": "dagsdg",
+    "stanicaID": 19,
+    "naziv": "ALEKSANDROVO PREDGRADE",
     "mesto": {
-      "mestoID": 125,
-      "naziv": "ASDGag"
+      "mestoID": 3,
+      "naziv": "Novi Sad"
+    }
+  },
+  {
+    "stanicaID": 11,
+    "naziv": "BACKA TOPOLA",
+    "mesto": {
+      "mestoID": 56,
+      "naziv": "Backa Topola"
+    }
+  },
+  {
+    "stanicaID": 22,
+    "naziv": "BEOGRAD CENTAR(PROKOP)",
+    "mesto": {
+      "mestoID": 6,
+      "naziv": "Beograd"
+    }
+  },
+  {
+    "stanicaID": 21,
+    "naziv": "BEOGRAD DUNAV",
+    "mesto": {
+      "mestoID": 6,
+      "naziv": "Beograd"
+    }
+  },
+  {
+    "stanicaID": 1,
+    "naziv": "BEOGRAD GLAVNA",
+    "mesto": {
+      "mestoID": 6,
+      "naziv": "Beograd"
+    }
+  },
+  {
+    "stanicaID": 64,
+    "naziv": "BLABLABLA",
+    "mesto": {
+      "mestoID": 15,
+      "naziv": "Aleksinac"
+    }
+  },
+  {
+    "stanicaID": 65,
+    "naziv": "BUKULJA",
+    "mesto": {
+      "mestoID": 15,
+      "naziv": "Aleksinac"
+    }
+  },
+  {
+    "stanicaID": 5,
+    "naziv": "INDJIJA",
+    "mesto": {
+      "mestoID": 4,
+      "naziv": "Indjija"
+    }
+  },
+  {
+    "stanicaID": 6,
+    "naziv": "INDJIJA PUSTARA",
+    "mesto": {
+      "mestoID": 4,
+      "naziv": "Indjija"
+    }
+  },
+  {
+    "stanicaID": 18,
+    "naziv": "KISAC",
+    "mesto": {
+      "mestoID": 3,
+      "naziv": "Novi Sad"
+    }
+  },
+  {
+    "stanicaID": 13,
+    "naziv": "LOVCENAC",
+    "mesto": {
+      "mestoID": 55,
+      "naziv": "Mala Krsna"
+    }
+  },
+  {
+    "stanicaID": 32,
+    "naziv": "MALA VAROSICA",
+    "mesto": {
+      "mestoID": 17,
+      "naziv": "Pirot"
+    }
+  },
+  {
+    "stanicaID": 12,
+    "naziv": "MALI IDJOS ",
+    "mesto": {
+      "mestoID": 56,
+      "naziv": "Backa Topola"
+    }
+  },
+  {
+    "stanicaID": 3,
+    "naziv": "NIS",
+    "mesto": {
+      "mestoID": 2,
+      "naziv": "Nis"
+    }
+  },
+  {
+    "stanicaID": 4,
+    "naziv": "NISKA BANJA",
+    "mesto": {
+      "mestoID": 2,
+      "naziv": "Nis"
+    }
+  },
+  {
+    "stanicaID": 2,
+    "naziv": "NOVI SAD",
+    "mesto": {
+      "mestoID": 3,
+      "naziv": "Novi Sad"
+    }
+  },
+  {
+    "stanicaID": 33,
+    "naziv": "SDAGASDGAD",
+    "mesto": {
+      "mestoID": 1,
+      "naziv": "Subotica"
+    }
+  },
+  {
+    "stanicaID": 7,
+    "naziv": "SREMSKI KARLOVCI",
+    "mesto": {
+      "mestoID": 5,
+      "naziv": "Sremski Karlovci"
+    }
+  },
+  {
+    "stanicaID": 17,
+    "naziv": "STEPANOVICEVO",
+    "mesto": {
+      "mestoID": 3,
+      "naziv": "Novi Sad"
+    }
+  },
+  {
+    "stanicaID": 9,
+    "naziv": "SUBOTICA",
+    "mesto": {
+      "mestoID": 1,
+      "naziv": "Subotica"
+    }
+  },
+  {
+    "stanicaID": 20,
+    "naziv": "VERUSIC",
+    "mesto": {
+      "mestoID": 1,
+      "naziv": "Subotica"
+    }
+  },
+  {
+    "stanicaID": 14,
+    "naziv": "VRBAS",
+    "mesto": {
+      "mestoID": 8,
+      "naziv": "Vrbas"
+    }
+  },
+  {
+    "stanicaID": 34,
+    "naziv": "ZABLJAK",
+    "mesto": {
+      "mestoID": 29,
+      "naziv": "Batocina"
+    }
+  },
+  {
+    "stanicaID": 10,
+    "naziv": "ZEDNIK",
+    "mesto": {
+      "mestoID": 1,
+      "naziv": "Subotica"
+    }
+  },
+  {
+    "stanicaID": 15,
+    "naziv": "ZMAJEVO",
+    "mesto": {
+      "mestoID": 8,
+      "naziv": "Vrbas"
     }
   }
 ]

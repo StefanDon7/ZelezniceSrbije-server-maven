@@ -1509,8 +1509,8 @@ public class FormaLinija extends javax.swing.JFrame {
         dodajMesta();
         dodajVozove();
         dodajTipoveLinija();
-//        dodajStanice_Iz_Fajla();
-        dodajStanice();
+        dodajStanice_Iz_Fajla();
+        //dodajStanice();
         dodajSveLinije();
         dodajPolaske();
     }
