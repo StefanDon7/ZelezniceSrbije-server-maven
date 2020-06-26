@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
- * Klasa sistemska operacija koja nasledjuje klasu AbstractGenericOperation.
+ * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
  * Menja atribute objekta klase klijent. Dozvoljeno je samo menjanje korisničkog
  * imena i šifre.
  *
@@ -28,6 +28,7 @@ public class SOIzmeniKlijenta extends AbstractGenericOperation {
      * @param Object entity - objekat klase Klijent.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
      */
     @Override
     protected void validate(Object entity) throws Exception, InvalidProductException {
@@ -49,7 +50,7 @@ public class SOIzmeniKlijenta extends AbstractGenericOperation {
      * @throws Exception
      * <ul>
      * <li> SQLException - uslučaju da je došlo do greške u sistemu
-     * <li> UpdateEntityException - ako sistem ne može da izmeni
+     * <li> UpdateEntityException - ako sistem ne može da izmeni klijenta
      * </ul>
      *
      *

@@ -13,11 +13,22 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
+ * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Unosi klijenta u tabelu klijent. Dozvoljeno je unositi klijenta sa email adresom
+ * koji vec ne postoji u bazi.
+ *
  *
  * @author sleza
  */
 public class SOUnesiKlijenta extends AbstractGenericOperation {
-
+    /**
+     * Proverava da li je objekat klase klijent i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Klijent.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
+     */
     @Override
     protected void validate(Object entity) throws InvalidProductException, Exception {
         if (!(entity instanceof Klijent)) {
@@ -29,7 +40,21 @@ public class SOUnesiKlijenta extends AbstractGenericOperation {
         }
 
     }
-
+    
+     /**
+     * Izvršava upit(unos Klijenta) nad bazom podataka, baca dve vrste izuzetka:
+     *
+     * @param Object entity - objekat klase Klijent.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - u slučaju da je došlo do greške u sistemu
+     * <li> InsertEntityException - ako sistem ne može da unese klijenta
+     * </ul>
+     *
+     *
+     */
+    
     @Override
     protected void execute(Object entity) throws InsertEntityException, SQLException {
         try {
