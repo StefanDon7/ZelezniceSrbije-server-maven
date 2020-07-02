@@ -26,9 +26,8 @@ import rs.stefanlezaic.zeleznice.srbije.server.soKlijent.SOVratiSveKlijente;
  * @author sleza
  */
 public class TestSOKlijent {
-    //(id, korisnickoIme, lozinka, ime, prezime, email)
-
-    Klijent k;
+    
+    Klijent k;   
     MedjuStanica m;
 
     @Before
@@ -36,7 +35,7 @@ public class TestSOKlijent {
         k = new Klijent();
         m = new MedjuStanica();
     }
-
+    
     @After
     public void tearDown() {
         k = null;

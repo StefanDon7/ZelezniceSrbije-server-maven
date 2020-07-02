@@ -12,18 +12,39 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
+ * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Brise medjustanicu iz baze.
  *
  * @author sleza
  */
 public class SOObrisiMedjustanicu extends AbstractGenericOperation {
-
+    
+    /**
+     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Medjustanica.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * 
+     */
     @Override
     protected void validate(Object entity) throws Exception {
         if (!(entity instanceof MedjuStanica)) {
             throw new Exception("Pogresni parametri!");
         }
     }
-
+     /**
+     * Izvršava upit(DELETE) nad bazom podataka, baca dve vrste izuzetka:
+     *
+     * @param Object entity - objekat klase Klijent.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - Greska na strani servera!
+     * <li> DeleteEntityException - Sistem ne moze da obrise medjustanicu!
+     * </ul>
+     *
+     */
     @Override
     protected void execute(Object entity) throws Exception {
         try {

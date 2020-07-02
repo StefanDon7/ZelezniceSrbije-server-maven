@@ -16,13 +16,25 @@ import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 import rs.stefanlezaic.zeleznice.srbije.server.soLinija.SOVratiLiniju;
 
 /**
+ * Klasa sistemska operacija VratiMedjustanicu koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Vraca medjustanicu iz baze na osnovu id.
  *
  * @author sleza
  */
 public class SOVratiPolazak extends AbstractGenericOperation {
-
+    /**
+     * Objekat klase GeneralEntity koji treba da primi vrednosti iz baze.
+     */
     private GeneralEntity polazak;
-
+/**
+     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Medjustanica.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji se koriste 
+     * za upit nisu dobro uneti ili nisu uneti.
+     */
     @Override
     protected void validate(Object entity) throws Exception {
         if (!(entity instanceof Polazak)) {
@@ -33,7 +45,18 @@ public class SOVratiPolazak extends AbstractGenericOperation {
             throw new InvalidProductException("Pogresni parametri!");
         }
     }
-
+ /**
+     * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
+     *
+     * @param Object entity - objekat klase Medjustanica.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - u slučaju da je došlo do greške u sistemu
+     * <li> EntityNotFoundException - ako sistem ne može da nadje medjustanicu
+     * </ul>
+     *
+     */
     @Override
     protected void execute(Object entity) throws EntityNotFoundException, SQLException, Exception {
         try {
@@ -50,7 +73,11 @@ public class SOVratiPolazak extends AbstractGenericOperation {
             throw new EntityNotFoundException("Pogrešno pogresno");
         }
     }
-
+     /**
+     * Vraca GeneralEntity koji ce kontroler kastovati u klasu Medjustanica
+     * 
+     * @return GeneralEntity(Medjustanica) rezultat pretrage nad bazom podataka.
+     */
     public GeneralEntity getPolazak() {
         return polazak;
     }

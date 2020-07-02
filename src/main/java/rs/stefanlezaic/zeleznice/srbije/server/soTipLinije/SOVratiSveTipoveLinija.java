@@ -12,19 +12,41 @@ import java.util.List;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
+ * Klasa sistemska operacija VratiMesto koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Vraca medjustanicu iz baze na osnovu id.
  *
  * @author sleza
  */
 public class SOVratiSveTipoveLinija extends AbstractGenericOperation {
-
+    /**
+     * Objekat klase GeneralEntity koji treba da primi vrednosti iz baze.
+     */
     private List<GeneralEntity> tipoviLinija;
-
+     /**
+     * Proverava da li je objekat klase mesto i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Mesto.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
+     */
     @Override
     protected void validate(Object entity) throws Exception {
         if (!(entity instanceof TipLinije)) {
             throw new Exception("Pogresni parametri!");
         }
     }
+      /**
+     * Izvršava upit(Select) nad bazom podataka.
+     *
+     * @param Object entity - objekat klase TipLinije.
+     *
+     *@throws Exception
+     * <ul>
+     * <li> SQLException - u slučaju da je došlo greška na strani servera.
+     * </ul>
+     *
+     */
 
     @Override
     protected void execute(Object entity) throws Exception {
@@ -34,7 +56,11 @@ public class SOVratiSveTipoveLinija extends AbstractGenericOperation {
             throw new Exception("Greška na strani servera");
         }
     }
-
+     /**
+     * Vraca List<GeneralEntity>(TipLinije) rezultat pretrage nad bazom podataka.
+     * 
+     * @return GeneralEntity(TipLinije).
+     */
     public List<GeneralEntity> getTipoviLinija() {
         return tipoviLinija;
     }

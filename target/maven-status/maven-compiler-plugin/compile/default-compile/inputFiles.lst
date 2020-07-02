@@ -10,6 +10,7 @@ C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOUnesiPolazak.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiSveLinije.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiLinijuBezPrimarnogKljuca.java
+C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\proba\Proba.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\util\SettingsLoader.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soStanica\SOVratiStanicuBezPrimarnogKljuca.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\database\DatabaseBroker.java
@@ -21,7 +22,6 @@ C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOIzmeniPolazak.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOObrisiMedjustanicu.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiLiniju.java
-C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\main\main.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soVoz\SOVratiSveVozove.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\kontroler\Kontroler.java
 C:\NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soKlijent\SOUnesiKlijenta.java

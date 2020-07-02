@@ -70,6 +70,7 @@ public class SOVratiKlijenta extends AbstractGenericOperation {
     }
     
      /**
+     * Vraca GeneralEntity koji ce kontroler kastovati u klasu Klijent
      * 
      * @return GeneralEntity(Klijent) rezultat pretrage nad bazom podataka.
      */

@@ -13,11 +13,20 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
+ * Klasa SOUnesiStanicu koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Unosi stanicu u bazu.
  *
  * @author sleza
  */
 public class SOUnesiStanicu extends AbstractGenericOperation {
-
+    /**
+     * Proverava da li je objekat klase Stanica i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Stanica.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
+     */
     @Override
     protected void validate(Object entity) throws Exception, InvalidProductException {
         if (!(entity instanceof Stanica)) {
@@ -28,7 +37,18 @@ public class SOUnesiStanicu extends AbstractGenericOperation {
             throw new InvalidProductException("Pogresan parametar");
         }
     }
-
+     /**
+     * Izvrsava upit(INSERT) nad bazom podataka, baca dve vrste izuzetka:
+     *
+     * @param Object entity - objekat klase Stanica.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - Greska na strani servera!
+     * <li> InsertEntityException - Stanica vec postoji!
+     * </ul>
+     *
+     */
     @Override
     protected void execute(Object entity) throws Exception {
         try {

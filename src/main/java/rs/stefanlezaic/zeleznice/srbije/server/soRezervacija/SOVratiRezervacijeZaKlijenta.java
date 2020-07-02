@@ -17,13 +17,25 @@ import rs.stefanlezaic.zeleznice.srbije.server.soKlijent.SOVratiKlijenta;
 import rs.stefanlezaic.zeleznice.srbije.server.soPolazak.SOVratiPolazak;
 
 /**
+ * Klasa SOVratiRezervacijeZaKlijenta koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Vraca sve rezervacije klijenta.
  *
  * @author sleza
  */
 public class SOVratiRezervacijeZaKlijenta extends AbstractGenericOperation {
-
+    /**
+     * Objekat klase GeneralEntity koji treba da primi vrednosti iz baze.
+     */
     private List<GeneralEntity> rezervacije;
-
+    
+     /**
+     * Proverava da li je objekat klase rezervacije i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Rezervacije.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji se koriste za upit nisu dobro uneti ili nisu uneti.
+     */
     @Override
     protected void validate(Object entity) throws Exception {
         if (!(entity instanceof Rezervacija)) {
@@ -35,7 +47,17 @@ public class SOVratiRezervacijeZaKlijenta extends AbstractGenericOperation {
         }
 
     }
-
+    /**
+     * Izvršava upit(Select) nad bazom podataka
+     *
+     * @param Object entity - objekat klase Rezervacija.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - u slučaju da je došlo do greške u sistemu
+     * </ul>
+     *
+     */
     @Override
     protected void execute(Object entity) throws Exception {
         try {
@@ -55,7 +77,11 @@ public class SOVratiRezervacijeZaKlijenta extends AbstractGenericOperation {
             throw new Exception("Greška na strani servera");
         }
     }
-
+     /**
+     * Vraca List<GeneralEntity>(Rezervacija) rezultat pretrage nad bazom podataka.
+     * 
+     * @return List<GeneralEntity>(Rezervacija).
+     */
     public List<GeneralEntity> getRezervacije() {
         return rezervacije;
     }

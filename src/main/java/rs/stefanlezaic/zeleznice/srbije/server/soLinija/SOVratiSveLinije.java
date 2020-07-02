@@ -16,19 +16,43 @@ import rs.stefanlezaic.zeleznice.srbije.server.soStanica.SOVratiStanicu;
 import rs.stefanlezaic.zeleznice.srbije.server.soTipLinije.SOVratiTipLinije;
 
 /**
+ * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Vraca sve linije iz baze.
  *
  * @author sleza
  */
 public class SOVratiSveLinije extends AbstractGenericOperation {
-
+    /**
+     * Lista linija
+     */
     private List<GeneralEntity> linije;
+    
+    
+    /**
+     * Proverava da li je objekat klase linija i ako nije baca izuzetak.
+     *
+     * @param Object entity - objekat klase Linija.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
 
+     */
     @Override
     protected void validate(Object entity) throws Exception {
         if (!(entity instanceof Linija)) {
             throw new Exception("Pogresni parametri!");
         }
     }
+       /**
+     * Izvršava upit(SELECT) nad bazom podataka, baca izuzetka:
+     *
+     * @param Object entity - objekat klase Linija.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - Greška na strani servera
+     * </ul>
+     *
+     */
 
     @Override
     protected void execute(Object entity) throws Exception {
@@ -56,7 +80,11 @@ public class SOVratiSveLinije extends AbstractGenericOperation {
             throw new Exception("Greška na strani servera");
         }
     }
-
+    /**
+     * Vraca GeneralEntity koji ce kontroler kastovati u klasu Linija
+     * 
+     * @return List GeneralEntity(Linija) rezultat pretrage nad bazom podataka.
+     */
     public List<GeneralEntity> getLinije() {
         return linije;
     }

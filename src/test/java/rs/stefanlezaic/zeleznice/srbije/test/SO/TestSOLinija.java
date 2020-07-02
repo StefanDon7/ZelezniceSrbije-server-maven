@@ -156,21 +156,21 @@ public class TestSOLinija {
     //OBRISI LINIJU
 
     //VRATI BEZ PRIMARNOG KLJUCA
-    @Test(expected = java.lang.Exception.class)
+    @Test(expected =InvalidProductException.class)
     public void testSOVratiBezPrimarnog_InvalidProductException1() throws Exception {
         Linija l = new Linija(-1, "", 0, 0, new Stanica(-1), new Stanica(5), new TipLinije(5));
         AbstractGenericOperation ago = new SOVratiLinijuBezPrimarnogKljuca();
         ago.templateExecute(l);
     }
 
-    @Test(expected = java.lang.Exception.class)
+    @Test(expected = InvalidProductException.class)
     public void testSOVratiBezPrimarnog_InvalidProductException2() throws Exception {
         Linija l = new Linija(-1, "", 0, 0, new Stanica(5), new Stanica(-1), new TipLinije(5));
         AbstractGenericOperation ago = new SOVratiLinijuBezPrimarnogKljuca();
         ago.templateExecute(l);
     }
 
-    @Test(expected = java.lang.Exception.class)
+    @Test(expected = InvalidProductException.class)
     public void testSOVratiBezPrimarnog_InvalidProductException3() throws Exception {
         Linija l = new Linija(-1, "", 0, 0, new Stanica(5), new Stanica(5), new TipLinije(-1));
         AbstractGenericOperation ago = new SOVratiLinijuBezPrimarnogKljuca();

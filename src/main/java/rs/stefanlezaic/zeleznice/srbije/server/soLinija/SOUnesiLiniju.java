@@ -13,11 +13,23 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
+ * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Unosi liniju u bazu podatak.
+ *
  *
  * @author sleza
  */
 public class SOUnesiLiniju extends AbstractGenericOperation {
-
+    
+    /**
+     * Proverava da li je objekat klase linija i ako nije baca exception.
+     *
+     * @param Object entity - objekat klase Linija.
+     *
+     * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
+     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
+     */
+    
     @Override
     protected void validate(Object entity) throws Exception, InvalidProductException {
         if (!(entity instanceof Linija)) {
@@ -31,6 +43,18 @@ public class SOUnesiLiniju extends AbstractGenericOperation {
             throw new InvalidProductException("\nPogresni parametri!");
         }
     }
+      /**
+     * Izvršava upit(INSERT) nad bazom podataka, baca dve vrste izuzetka:
+     *
+     * @param Object entity - objekat klase Linija.
+     *
+     * @throws Exception
+     * <ul>
+     * <li> SQLException - Sistem ne moze da napravi liniju
+     * <li> InsertEntityException - Sistem ne moze da napravi liniju
+     * </ul>
+     *
+     */
 
     @Override
     protected void execute(Object entity) throws Exception {
