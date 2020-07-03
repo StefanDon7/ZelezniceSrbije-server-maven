@@ -24,7 +24,7 @@ public class SOObrisiLiniju extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase linija i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Linija.
+     * @param entity - objekat klase Linija.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -44,7 +44,7 @@ public class SOObrisiLiniju extends AbstractGenericOperation {
       /**
      * Izvršava upit(DELETE) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Linija.
+     * @param entity - objekat klase Linija.
      *
      * @throws Exception
      * <ul>

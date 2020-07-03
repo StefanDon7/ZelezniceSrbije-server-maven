@@ -16,7 +16,7 @@ import rs.stefanlezaic.zeleznice.srbije.server.soLinija.SOVratiLiniju;
 
 /**
  * Klasa sistemska operacija VratiMedjustanicu koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Vraca medjustanicu iz baze na osnovu id.
+ * Vraca sve polaske iz baze.
  *
  * @author sleza
  */
@@ -26,13 +26,12 @@ public class SOVratiSvePolaske extends AbstractGenericOperation {
      */
     private List<GeneralEntity> polasci;
     /**
-     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     * Proverava da li je objekat klase Polazak i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji se koriste 
-     * za upit nisu dobro uneti ili nisu uneti.
+     * 
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -43,12 +42,12 @@ public class SOVratiSvePolaske extends AbstractGenericOperation {
      /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception
      * <ul>
      * <li> SQLException - u slučaju da je došlo do greške u sistemu
-     * <li> EntityNotFoundException - ako sistem ne može da nadje medjustanicu
+     * <li> EntityNotFoundException - ako sistem ne može da nadje polazak
      * </ul>
      *
      */
@@ -69,9 +68,9 @@ public class SOVratiSvePolaske extends AbstractGenericOperation {
         }
     }
     /**
-     * Vraca listuGeneralEntity koji ce kontroler kastovati u klasu Medjustanica
+     * Vraca List GeneralEntity(Polazak) rezultat pretrage nad bazom podataka.
      * 
-     * @return listu GeneralEntity(Medjustanica) rezultat pretrage nad bazom podataka.
+     * @return List GeneralEntity(Polazak)
      */
 
     public List<GeneralEntity> getPolasci() {

@@ -23,7 +23,7 @@ public class SOIzmeniMedjustanicu extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase medjustanica i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Medjustanica.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * 
@@ -38,7 +38,7 @@ public class SOIzmeniMedjustanicu extends AbstractGenericOperation {
     /**
      * Izvršava upit(UPDATE) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
      * @throws Exception
      * <ul>

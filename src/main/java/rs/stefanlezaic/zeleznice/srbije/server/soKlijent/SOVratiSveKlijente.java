@@ -26,7 +26,7 @@ public class SOVratiSveKlijente extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase klijent i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      */
@@ -39,7 +39,7 @@ public class SOVratiSveKlijente extends AbstractGenericOperation {
      /**
      * Izvršava upit(Select) nad bazom podataka, baca izuzetak:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
      * @throws Exception
      * <ul>

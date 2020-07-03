@@ -26,7 +26,7 @@ public class SOVratiVoz extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase Voz i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Voz.
+     * @param entity - objekat klase Voz.
      *
      * @throws Exception u slucaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -44,9 +44,10 @@ public class SOVratiVoz extends AbstractGenericOperation {
       /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Voz.
+     * @param entity - objekat klase Voz.
      *
-     *@throws Exception
+     *@throws EntityNotFoundException
+     *@throws SQLException
      * <ul>
      * <li> SQLException - u slučaju da je došlo do greške u sistemu
      * <li> EntityNotFoundException - ako sistem ne može da nadje voz

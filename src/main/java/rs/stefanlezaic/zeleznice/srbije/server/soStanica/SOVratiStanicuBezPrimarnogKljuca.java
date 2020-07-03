@@ -28,7 +28,7 @@ public class SOVratiStanicuBezPrimarnogKljuca extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase stanica i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Medjustanica.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji se koriste za upit nisu dobro uneti ili nisu uneti.
@@ -46,9 +46,10 @@ public class SOVratiStanicuBezPrimarnogKljuca extends AbstractGenericOperation {
     /**
      * Izvršava upit(Select) nad bazom podataka
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Medjustanica.
      *
-     * @throws Exception
+     * @throws EntityNotFoundException
+     * @throws SQLException
      * <ul>
      * <li> SQLException - u slučaju da je došlo do greške u sistemu
      * <li> EntityNotFoundException - ako sistem ne može da nadje stanicu

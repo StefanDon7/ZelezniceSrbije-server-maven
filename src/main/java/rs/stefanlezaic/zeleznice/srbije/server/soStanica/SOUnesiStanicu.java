@@ -22,7 +22,7 @@ public class SOUnesiStanicu extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase Stanica i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Stanica.
+     * @param entity - objekat klase Stanica.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -40,7 +40,7 @@ public class SOUnesiStanicu extends AbstractGenericOperation {
      /**
      * Izvrsava upit(INSERT) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Stanica.
+     * @param entity - objekat klase Stanica.
      *
      * @throws Exception
      * <ul>

@@ -27,10 +27,9 @@ public class SOVratiSvaMesta extends AbstractGenericOperation {
       /**
      * Proverava da li je objekat klase mesto i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Mesto.
+     * @param entity - objekat klase Mesto.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -41,7 +40,7 @@ public class SOVratiSvaMesta extends AbstractGenericOperation {
      /**
      * Izvršava upit(Select) nad bazom podataka.
      *
-     * @param Object entity - objekat klase Mesto.
+     * @param entity - objekat klase Mesto.
      *
      *@throws Exception
      * <ul>
@@ -60,9 +59,9 @@ public class SOVratiSvaMesta extends AbstractGenericOperation {
     }
     
      /**
-     * Vraca List<GeneralEntity>(Mesto) rezultat pretrage nad bazom podataka.
+     * Vraca List GeneralEntity(Mesto) rezultat pretrage nad bazom podataka.
      * 
-     * @return List<GeneralEntity>(Mesto).
+     * @return List GeneralEntity(Mesto).
      */
     
     public List<GeneralEntity> getMesta() {

@@ -27,7 +27,7 @@ public class SOVratiKlijentaBezPrimarnogKljuca extends AbstractGenericOperation 
      /**
      * Proverava da li je objekat klase klijent i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji se koriste za upit nisu dobro uneti ili nisu uneti.
@@ -46,9 +46,10 @@ public class SOVratiKlijentaBezPrimarnogKljuca extends AbstractGenericOperation 
      /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
-     * @throws Exception
+     * @throws EntityNotFoundException
+     * @throws SQLException
      * <ul>
      * <li> SQLException - u slučaju da je došlo do greške u sistemu
      * <li> EntityNotFoundException - ako sistem ne može da nadje klijenta

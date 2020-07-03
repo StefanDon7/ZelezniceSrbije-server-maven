@@ -30,7 +30,7 @@ public class SOVratiMedjustanicu extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase medjustanica i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Medjustanica.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji se koriste 
@@ -50,7 +50,7 @@ public class SOVratiMedjustanicu extends AbstractGenericOperation {
      /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Medjustanica.
      *
      * @throws Exception
      * <ul>

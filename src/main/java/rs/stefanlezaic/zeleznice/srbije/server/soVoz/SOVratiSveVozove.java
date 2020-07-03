@@ -25,7 +25,7 @@ public class SOVratiSveVozove extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase Voz i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Voz.
+     * @param entity - objekat klase Voz.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      */
@@ -38,7 +38,7 @@ public class SOVratiSveVozove extends AbstractGenericOperation {
     /**
      * Izvršava upit(Select) nad bazom podataka.
      *
-     * @param Object entity - objekat klase Voz.
+     * @param entity - objekat klase Voz.
      *
      *@throws Exception
      * <ul>
@@ -56,7 +56,7 @@ public class SOVratiSveVozove extends AbstractGenericOperation {
      /**
      * Vraca Listu GeneralEntity(Voz) rezultat pretrage nad bazom podataka.
      * 
-     * @return List<GeneralEntity> .
+     * @return List GeneralEntity.
      */
     public List<GeneralEntity> getVozovi() {
         return vozovi;

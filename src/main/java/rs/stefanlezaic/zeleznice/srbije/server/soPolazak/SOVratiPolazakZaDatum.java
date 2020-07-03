@@ -15,8 +15,8 @@ import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 import rs.stefanlezaic.zeleznice.srbije.server.soLinija.SOVratiLiniju;
 
 /**
- * Klasa sistemska operacija VratiMedjustanicu koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Vraca medjustanicu iz baze na osnovu id.
+ * Klasa SOVratiPolazakZaDatum koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Vraca Polaske iz baze za odredjeni datum.
  *
  * @author sleza
  */
@@ -27,13 +27,11 @@ public class SOVratiPolazakZaDatum extends AbstractGenericOperation {
     private List<GeneralEntity> polasci;
     
      /**
-     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     * Proverava da li je objekat klase Polazak i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji se koriste 
-     * za upit nisu dobro uneti ili nisu uneti.
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -44,7 +42,7 @@ public class SOVratiPolazakZaDatum extends AbstractGenericOperation {
     /**
      * Izvršava upit(Select) nad bazom podataka
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception
      * <ul>
@@ -69,9 +67,9 @@ public class SOVratiPolazakZaDatum extends AbstractGenericOperation {
         }
     }
      /**
-     * Vraca GeneralEntity koji ce kontroler kastovati u klasu Medjustanica
+     * Vraca List GeneralEntity(Polazak) rezultat pretrage nad bazom podataka.
      * 
-     * @return List<GeneralEntity>(Medjustanica).
+     * @return List GeneralEntity(Polazak).
      */
     public List<GeneralEntity> getPolasci() {
         return polasci;

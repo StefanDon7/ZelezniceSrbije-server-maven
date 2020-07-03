@@ -30,11 +30,10 @@ public class SOVratiSveMedjustanice extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase medjustanica i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param  entity - objekat klase Medjustanica.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji se koriste 
-     * za upit nisu dobro uneti ili nisu uneti.
+     * 
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -46,7 +45,7 @@ public class SOVratiSveMedjustanice extends AbstractGenericOperation {
     /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param  entity - objekat klase Medjustanica.
      *
      * @throws Exception
      * <ul>
@@ -75,9 +74,9 @@ public class SOVratiSveMedjustanice extends AbstractGenericOperation {
         }
     }
     /**
-     * Vraca listuGeneralEntity koji ce kontroler kastovati u klasu Medjustanica
+     * Vraca List GeneralEntity koji ce kontroler kastovati u klasu Medjustanica
      * 
-     * @return listu GeneralEntity(Medjustanica) rezultat pretrage nad bazom podataka.
+     * @return List GeneralEntity(Medjustanica) rezultat pretrage nad bazom podataka.
      */
     public List<GeneralEntity> getMedjustanice() {
         return medjustanice;

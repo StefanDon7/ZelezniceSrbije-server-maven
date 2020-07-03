@@ -27,7 +27,7 @@ public class SOVratiTipLinije extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase TipLinije i ako nije baca exception.
      *
-     * @param Object entity - objekat klase TipLinije.
+     * @param entity - objekat klase TipLinije.
      *
      * @throws Exception u slucaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -45,9 +45,10 @@ public class SOVratiTipLinije extends AbstractGenericOperation {
     /**
      *Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     *@param Object entity - objekat klase TipLinije.
+     *@param  entity - objekat klase TipLinije.
      *
-     *@throws Exception
+     *@throws EntityNotFoundException
+     *@throws SQLException
      *<ul>
      *<li> SQLException - u slučaju da je došlo do greške u sistemu
      *<li> EntityNotFoundException - ako sistem ne može da nadje tip linije

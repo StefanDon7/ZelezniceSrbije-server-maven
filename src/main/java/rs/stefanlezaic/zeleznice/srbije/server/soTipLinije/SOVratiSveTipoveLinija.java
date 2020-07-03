@@ -25,10 +25,9 @@ public class SOVratiSveTipoveLinija extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase mesto i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Mesto.
+     * @param entity - objekat klase Mesto.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -39,7 +38,7 @@ public class SOVratiSveTipoveLinija extends AbstractGenericOperation {
       /**
      * Izvršava upit(Select) nad bazom podataka.
      *
-     * @param Object entity - objekat klase TipLinije.
+     * @param entity - objekat klase TipLinije.
      *
      *@throws Exception
      * <ul>
@@ -57,7 +56,7 @@ public class SOVratiSveTipoveLinija extends AbstractGenericOperation {
         }
     }
      /**
-     * Vraca List<GeneralEntity>(TipLinije) rezultat pretrage nad bazom podataka.
+     * Vraca List GeneralEntity(TipLinije) rezultat pretrage nad bazom podataka.
      * 
      * @return GeneralEntity(TipLinije).
      */

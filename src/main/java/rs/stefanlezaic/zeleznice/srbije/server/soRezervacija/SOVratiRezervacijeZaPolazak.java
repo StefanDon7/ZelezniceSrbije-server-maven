@@ -31,7 +31,7 @@ public class SOVratiRezervacijeZaPolazak extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase Rezervacija i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Rezervacija.
+     * @param entity - objekat klase Rezervacija.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji se koriste za upit nisu dobro uneti ili nisu uneti.
@@ -50,7 +50,7 @@ public class SOVratiRezervacijeZaPolazak extends AbstractGenericOperation {
     /**
      * Izvršava upit(Select) nad bazom podataka
      *
-     * @param Object entity - objekat klase Rezervacije.
+     * @param entity - objekat klase Rezervacije.
      *
      * @throws Exception
      * <ul>
@@ -78,9 +78,9 @@ public class SOVratiRezervacijeZaPolazak extends AbstractGenericOperation {
         }
     }
      /**
-     * Vraca List<GeneralEntity>(Rezervacija) rezultat pretrage nad bazom podataka.
+     * Vraca List GeneralEntity(Rezervacija) rezultat pretrage nad bazom podataka.
      * 
-     * @return List<GeneralEntity>(Rezervacija).
+     * @return List GeneralEntity(Rezervacija).
      */
     public List<GeneralEntity> getRezervacije() {
         return rezervacije;

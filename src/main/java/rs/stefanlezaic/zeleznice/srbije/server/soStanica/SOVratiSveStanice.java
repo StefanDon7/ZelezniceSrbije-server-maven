@@ -27,11 +27,9 @@ public class SOVratiSveStanice extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase stanica i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Stanica.
+     * @param  entity - objekat klase Stanica.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji se koriste 
-     * za upit nisu dobro uneti ili nisu uneti.
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -42,7 +40,7 @@ public class SOVratiSveStanice extends AbstractGenericOperation {
      /**
      * Izvršava upit(Select) nad bazom podataka.
      *
-     * @param Object entity - objekat klase Stanica.
+     * @param entity - objekat klase Stanica.
      *
      * @throws Exception
      * <ul>
@@ -66,9 +64,9 @@ public class SOVratiSveStanice extends AbstractGenericOperation {
         }
     }
     /**
-     * Vraca List<GeneralEntity>(Stanica) rezultat pretrage nad bazom podataka. 
+     * Vraca List GeneralEntity (Stanica) rezultat pretrage nad bazom podataka. 
      * 
-     * @return List<GeneralEntity>(Stanica).
+     * @return List GeneralEntity (Stanica).
      */
     public List<GeneralEntity> getStanice() {
         return stanice;

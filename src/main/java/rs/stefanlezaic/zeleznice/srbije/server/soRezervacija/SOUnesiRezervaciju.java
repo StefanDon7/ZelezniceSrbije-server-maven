@@ -23,7 +23,7 @@ public class SOUnesiRezervaciju extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase Rezervacija i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Rezervacija.
+     * @param entity - objekat klase Rezervacija.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -53,7 +53,7 @@ public class SOUnesiRezervaciju extends AbstractGenericOperation {
      /**
      * Izvrsava upit(INSERT) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Rezervacija.
+     * @param entity - objekat klase Rezervacija.
      *
      * @throws Exception
      * <ul>
@@ -70,5 +70,4 @@ public class SOUnesiRezervaciju extends AbstractGenericOperation {
             throw new Exception("Sistem ne moze da unese rezervaciju");
         }
     }
-
 }

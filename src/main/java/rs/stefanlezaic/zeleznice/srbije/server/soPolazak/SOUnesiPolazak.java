@@ -13,19 +13,18 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
- * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Unosi medjustanicu u bazu.
+ * Klasa SOUnesiPolazak koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Unosi polazak u bazu.
  *
  * @author sleza
  */
 public class SOUnesiPolazak extends AbstractGenericOperation {
      /**
-     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     * Proverava da li je objekat klase polazak i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase polazak.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -36,12 +35,12 @@ public class SOUnesiPolazak extends AbstractGenericOperation {
     /**
      * Izvrsava upit(INSERT) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception
      * <ul>
      * <li> SQLException - Greska na strani servera!
-     * <li> InsertEntityException - Medjustanica vec postoji!
+     * <li> InsertEntityException - Polazak vec postoji!
      * </ul>
      *
      */

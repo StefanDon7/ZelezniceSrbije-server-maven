@@ -16,8 +16,9 @@ import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 import rs.stefanlezaic.zeleznice.srbije.server.soLinija.SOVratiLiniju;
 
 /**
- * Klasa sistemska operacija VratiMedjustanicu koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Vraca medjustanicu iz baze na osnovu id.
+ * 
+ * Klasa SOVratiPolazak koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Vraca polazak iz baze na osnovu id.
  *
  * @author sleza
  */
@@ -27,9 +28,9 @@ public class SOVratiPolazak extends AbstractGenericOperation {
      */
     private GeneralEntity polazak;
 /**
-     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     * Proverava da li je objekat klase polazak i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase polazak.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji se koriste 
@@ -48,12 +49,13 @@ public class SOVratiPolazak extends AbstractGenericOperation {
  /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Medjustanica.
      *
-     * @throws Exception
+     * @throws EntityNotFoundException
+     * @throws SQLException
      * <ul>
      * <li> SQLException - u slučaju da je došlo do greške u sistemu
-     * <li> EntityNotFoundException - ako sistem ne može da nadje medjustanicu
+     * <li> EntityNotFoundException - ako sistem ne može da nadje Polazak
      * </ul>
      *
      */
@@ -70,13 +72,13 @@ public class SOVratiPolazak extends AbstractGenericOperation {
         } catch (SQLException ex) {
             throw new SQLException("Greška na strani servera");
         } catch (EntityNotFoundException ex) {
-            throw new EntityNotFoundException("Pogrešno pogresno");
+            throw new EntityNotFoundException("Polazak nije pronadjen!");
         }
     }
      /**
-     * Vraca GeneralEntity koji ce kontroler kastovati u klasu Medjustanica
+     * Vraca GeneralEntity(Polazak) rezultat pretrage nad bazom podataka.
      * 
-     * @return GeneralEntity(Medjustanica) rezultat pretrage nad bazom podataka.
+     * @return GeneralEntity(Polazak).
      */
     public GeneralEntity getPolazak() {
         return polazak;

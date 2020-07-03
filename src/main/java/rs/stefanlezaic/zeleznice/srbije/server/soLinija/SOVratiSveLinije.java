@@ -31,7 +31,7 @@ public class SOVratiSveLinije extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase linija i ako nije baca izuzetak.
      *
-     * @param Object entity - objekat klase Linija.
+     * @param entity - objekat klase Linija.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
 
@@ -45,7 +45,7 @@ public class SOVratiSveLinije extends AbstractGenericOperation {
        /**
      * Izvršava upit(SELECT) nad bazom podataka, baca izuzetka:
      *
-     * @param Object entity - objekat klase Linija.
+     * @param entity - objekat klase Linija.
      *
      * @throws Exception
      * <ul>

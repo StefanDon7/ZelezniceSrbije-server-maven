@@ -28,7 +28,7 @@ public class SOVratiMesto extends AbstractGenericOperation {
      /**
      * Proverava da li je objekat klase mesto i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Mesto.
+     * @param entity - objekat klase Mesto.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -47,9 +47,10 @@ public class SOVratiMesto extends AbstractGenericOperation {
      /**
      * Izvršava upit(Select) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Mesto.
+     * @param entity - objekat klase Mesto.
      *
-     *@throws Exception
+     *@throws EntityNotFoundException
+     *@throws SQLException
      * <ul>
      * <li> SQLException - u slučaju da je greška na strani servera
      * <li> EntityNotFoundException - ako sistem ne može da nadje mesto

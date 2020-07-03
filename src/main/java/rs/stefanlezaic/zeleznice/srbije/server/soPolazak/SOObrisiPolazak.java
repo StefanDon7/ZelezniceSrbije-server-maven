@@ -13,16 +13,17 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
- * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Brise medjustanicu iz baze.
+ * Klasa SOObrisiPolazak koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Brise polazak iz baze.Polazak je dozvoljeno obrisati samo 
+ * ako za njega ne postoji ni jedan rezervacija.
  *
  * @author sleza
  */
 public class SOObrisiPolazak extends AbstractGenericOperation {
      /**
-     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     * Proverava da li je objekat klase Polazak i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * 
@@ -40,12 +41,12 @@ public class SOObrisiPolazak extends AbstractGenericOperation {
     /**
      * Izvršava upit(DELETE) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception
      * <ul>
      * <li> SQLException - Greska na strani servera!
-     * <li> DeleteEntityException - Sistem ne moze da obrise medjustanicu!
+     * <li> DeleteEntityException - Sistem ne moze da obrise Polazak!
      * </ul>
      *
      */

@@ -17,7 +17,6 @@ import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
  * Menja atribute objekta klase klijent. Dozvoljeno je samo menjanje korisničkog
  * imena i šifre.
  *
- *
  * @author sleza
  */
 public class SOIzmeniKlijenta extends AbstractGenericOperation {
@@ -25,7 +24,7 @@ public class SOIzmeniKlijenta extends AbstractGenericOperation {
     /**
      * Proverava da li je objekat klase klijent i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * @throws InvalidProductException u slučaju da atributi koji služe za upit nisu dobro uneti ili nisu uneti.
@@ -45,9 +44,10 @@ public class SOIzmeniKlijenta extends AbstractGenericOperation {
     /**
      * Izvršava upit nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Klijent.
      *
-     * @throws Exception
+     * @throws UpdateEntityException,
+     * @throws SQLException
      * <ul>
      * <li> SQLException - uslučaju da je došlo do greške u sistemu
      * <li> UpdateEntityException - ako sistem ne može da izmeni klijenta

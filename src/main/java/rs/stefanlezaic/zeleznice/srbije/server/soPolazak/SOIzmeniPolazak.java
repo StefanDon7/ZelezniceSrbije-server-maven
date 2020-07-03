@@ -13,17 +13,17 @@ import java.sql.SQLException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
- * Klasa sistemska operacija koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Menja atribute objekta klase Medjustanica. Dozvoljeno je samo menjanje rednog broja medjustanice.
+ * Klasa SOIzmeniPolazak koja nasledjuje abstraktnu klasu AbstractGenericOperation.
+ * Menja atribute objekta klase Polazak. Dozvoljeno je samo menjanje napomene.
  *
  *
  * @author sleza
  */
 public class SOIzmeniPolazak extends AbstractGenericOperation {
  /**
-     * Proverava da li je objekat klase medjustanica i ako nije baca exception.
+     * Proverava da li je objekat klase polazak i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Medjustanica.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * 
@@ -41,12 +41,12 @@ public class SOIzmeniPolazak extends AbstractGenericOperation {
     /**
      * Izvršava upit(UPDATE) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Klijent.
+     * @param entity - objekat klase Polazak.
      *
      * @throws Exception
      * <ul>
      * <li> SQLException - Greska na strani servera!
-     * <li> UpdateEntityException - Sistem ne moze da izmeni medjustanicu!
+     * <li> UpdateEntityException - Sistem ne moze da izmeni Polazak!
      * </ul>
      *
      *

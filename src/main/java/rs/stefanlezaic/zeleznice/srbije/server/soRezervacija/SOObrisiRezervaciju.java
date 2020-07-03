@@ -22,7 +22,7 @@ public class SOObrisiRezervaciju extends AbstractGenericOperation {
       /**
      * Proverava da li je objekat klase rezervacija i ako nije baca exception.
      *
-     * @param Object entity - objekat klase Rezervacija.
+     * @param entity - objekat klase Rezervacija.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
      * 
@@ -41,7 +41,7 @@ public class SOObrisiRezervaciju extends AbstractGenericOperation {
      /**
      * Izvršava upit(DELETE) nad bazom podataka, baca dve vrste izuzetka:
      *
-     * @param Object entity - objekat klase Rezervacija.
+     * @param entity - objekat klase Rezervacija.
      *
      * @throws Exception
      * <ul>
