@@ -3,7 +3,6 @@ rs\stefanlezaic\zeleznice\srbije\server\soTipLinije\SOVratiSveTipoveLinija.class
 rs\stefanlezaic\zeleznice\srbije\server\soStanica\SOVratiStanicuBezPrimarnogKljuca.class
 rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOIzmeniMedjustanicu.class
 rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiSveLinije.class
-rs\stefanlezaic\zeleznice\srbije\server\proba\Proba.class
 rs\stefanlezaic\zeleznice\srbije\server\soMesta\SOVratiMesto.class
 rs\stefanlezaic\zeleznice\srbije\server\so\AbstractGenericOperation.class
 rs\stefanlezaic\zeleznice\srbije\server\form\FormaLinija$7.class

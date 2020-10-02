@@ -12,6 +12,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.Linija;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.Mesto;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.TipLinije;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.Voz;
 import rs.stefanlezaic.zeleznice.srbije.lib.kons.Konstante;
 import rs.stefanlezaic.zeleznice.srbije.lib.kons.ResponseStatus;
 import rs.stefanlezaic.zeleznice.srbije.server.kontroler.Kontroler;
@@ -64,6 +68,26 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
                         so.setOdgovor(listaMedjustanica);
                         so.setStatus(ResponseStatus.OK);
                         break;
+                    case Konstante.VRATI_LINIJE:
+                        ArrayList<Linija> listaLinija = Kontroler.getInstance().vratiMiSveLinije();
+                        so.setOdgovor(listaLinija);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.VRATI_MESTA:
+                        ArrayList<Mesto> listaMesta = Kontroler.getInstance().vratiListuMesta();
+                        so.setOdgovor(listaMesta);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.VRATI_VOZOVE:
+                        ArrayList<Voz> listaVozova = Kontroler.getInstance().vratiMiSveVozove();
+                        so.setOdgovor(listaVozova);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.VRATI_TIPOVE_LINIJA:
+                        ArrayList<TipLinije> listaTipovaLinije = Kontroler.getInstance().vratiMiSveTipoveLinije();
+                        so.setOdgovor(listaTipovaLinije);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
                     case Konstante.VRATI_MEDJUSTANICE_LINIJE:
                         MedjuStanica m = (MedjuStanica) kz.getParametar();
                         ArrayList<MedjuStanica> listaMedjustanicaZaLiniju = Kontroler.getInstance().vratiMiSveMedjustaniceZaLiniju(m);
@@ -71,8 +95,7 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_POLASKE:
-                        Polazak p = (Polazak) kz.getParametar();
-                        ArrayList<Polazak> listaPolazaka = Kontroler.getInstance().vratiMiPolaskeZaDatum(p);
+                        ArrayList<Polazak> listaPolazaka = Kontroler.getInstance().vratiListuPolazaka();
                         so.setStatus(ResponseStatus.OK);
                         so.setOdgovor(listaPolazaka);
                         break;
@@ -108,6 +131,57 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
                         Kontroler.getInstance().otkaziRezervaciju(kzRezervacijaZaOtkazivanje);
                         so.setStatus(ResponseStatus.OK);
                         break;
+                    case Konstante.IZMENI_POLASKE:
+                        ArrayList<Polazak> listaPolazakaZaMenjanje = (ArrayList<Polazak>) kz.getParametar();
+                        Kontroler.getInstance().updejtujMiPolaske(listaPolazakaZaMenjanje);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.OBRISI_POLAZAK:
+                        Polazak polazakZaBrisanje = (Polazak) kz.getParametar();
+                        Kontroler.getInstance().obrisiPolazak(polazakZaBrisanje);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.VRATI_LINIJU_NA_OSNOVU_STANICE_I_TIPA:
+                        Linija linijaZaPretrazivanje = (Linija) kz.getParametar();
+                        Kontroler.getInstance().vratiLinijuNaOsnovuStanicaITipa(linijaZaPretrazivanje);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.UNESI_STANICU:
+                        Stanica stanicaZaUnos = (Stanica) kz.getParametar();
+                        Kontroler.getInstance().unesiNovuStanicu(stanicaZaUnos);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.OBRISI_LINIJU:
+                        Linija linijaZaBrisanja = (Linija) kz.getParametar();
+                        Kontroler.getInstance().obrisiLiniju(linijaZaBrisanja);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.UNESI_SVE_POLASKE:
+                        ArrayList<Polazak> listaPolazakaZaUnos = (ArrayList<Polazak>) kz.getParametar();
+                        Kontroler.getInstance().unesiSvePolazke(listaPolazakaZaUnos);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.IZMENI_SVE_MEDJUSTANICE:
+                        ArrayList<MedjuStanica> medjustaniceZaIzmenu = (ArrayList<MedjuStanica>) kz.getParametar();
+                        Kontroler.getInstance().izmeniSveMedjustanice(medjustaniceZaIzmenu);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.UNESI_LINIJU:
+                        Linija linijaZaUnos = (Linija) kz.getParametar();
+                        Kontroler.getInstance().unesiLiniju(linijaZaUnos);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.OBRISI_MEDJUSTANICU:
+                        MedjuStanica medjustanicaZaBrisanje = (MedjuStanica) kz.getParametar();
+                        Kontroler.getInstance().obrisiMedjustanicu(medjustanicaZaBrisanje);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+                    case Konstante.UNESI_MEDJUSTANICU:
+                        MedjuStanica medjustanicaZaUnos = (MedjuStanica) kz.getParametar();
+                        Kontroler.getInstance().unesiMedjustanicu(medjustanicaZaUnos);
+                        so.setStatus(ResponseStatus.OK);
+                        break;
+
                 }
             } catch (Exception ex) {
                 so.setPoruka("GRESKA!");
