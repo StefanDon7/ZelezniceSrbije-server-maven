@@ -49,14 +49,6 @@ public class SOVratiKlijenta extends AbstractGenericOperation {
      *
      * @param entity - objekat klase Klijent.
      *
-     * @throws SQLException,
-     * @throws EntityNotFoundException
-     * <ul>
-     * <li> SQLException - u slučaju da je došlo do greške u sistemu
-     * <li> EntityNotFoundException - ako sistem ne može da nadje klijenta
-     * </ul>
-     *
-     *
      */
 
     @Override

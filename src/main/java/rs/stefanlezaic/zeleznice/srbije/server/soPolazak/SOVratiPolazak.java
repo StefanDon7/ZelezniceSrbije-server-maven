@@ -51,12 +51,6 @@ public class SOVratiPolazak extends AbstractGenericOperation {
      *
      * @param entity - objekat klase Medjustanica.
      *
-     * @throws EntityNotFoundException
-     * @throws SQLException
-     * <ul>
-     * <li> SQLException - u slučaju da je došlo do greške u sistemu
-     * <li> EntityNotFoundException - ako sistem ne može da nadje Polazak
-     * </ul>
      *
      */
     @Override

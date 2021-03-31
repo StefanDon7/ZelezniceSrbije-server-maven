@@ -46,13 +46,6 @@ public class SOIzmeniKlijenta extends AbstractGenericOperation {
      *
      * @param entity - objekat klase Klijent.
      *
-     * @throws UpdateEntityException,
-     * @throws SQLException
-     * <ul>
-     * <li> SQLException - uslučaju da je došlo do greške u sistemu
-     * <li> UpdateEntityException - ako sistem ne može da izmeni klijenta
-     * </ul>
-     *
      *
      */
     @Override

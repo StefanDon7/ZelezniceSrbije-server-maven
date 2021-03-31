@@ -46,12 +46,6 @@ public class SOUnesiKlijenta extends AbstractGenericOperation {
      *
      * @param  entity - objekat klase Klijent.
      *
-     * @throws SQLException
-     * @throws InsertEntityException
-     * <ul>
-     * <li> SQLException - u slučaju da je došlo do greške u sistemu
-     * <li> InsertEntityException - ako sistem ne može da unese klijenta
-     * </ul>
      *
      *
      */

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IDatabaseBroker {
-
+   
     List<GeneralEntity> getAllRecord(GeneralEntity entity) throws SQLException;
 
     GeneralEntity findRecord(GeneralEntity entity) throws SQLException, EntityNotFoundException;

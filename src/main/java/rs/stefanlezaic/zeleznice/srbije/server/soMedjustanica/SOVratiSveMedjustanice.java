@@ -74,7 +74,7 @@ public class SOVratiSveMedjustanice extends AbstractGenericOperation {
         }
     }
     /**
-     * Vraca List GeneralEntity koji ce kontroler kastovati u klasu Medjustanica
+     * Vraca List GeneralEntity.
      * 
      * @return List GeneralEntity(Medjustanica) rezultat pretrage nad bazom podataka.
      */

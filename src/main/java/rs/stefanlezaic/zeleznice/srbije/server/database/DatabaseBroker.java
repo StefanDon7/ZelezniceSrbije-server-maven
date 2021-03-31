@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import rs.stefanlezaic.zeleznice.srbije.server.storage.database.connection.DatabaseConnection;
@@ -18,7 +19,7 @@ public class DatabaseBroker implements IDatabaseBroker {
 
     @Override
     public List<GeneralEntity> getAllRecord(GeneralEntity entity) throws SQLException {
-        List<GeneralEntity> objects = new LinkedList<>();
+        List<GeneralEntity> objects = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM ").append(entity.getClassName()).append(" order by ").append(entity.getSort());
         String query = sb.toString();
@@ -65,7 +66,7 @@ public class DatabaseBroker implements IDatabaseBroker {
 
     @Override
     public List<GeneralEntity> findRecords(GeneralEntity entity, GeneralEntity parent) throws SQLException {
-        List<GeneralEntity> objects = new LinkedList<>();
+        List<GeneralEntity> objects = new ArrayList<>();
         String query = "SELECT * FROM " + entity.getClassName() + " WHERE " + parent.getWhereCondition() + " order by " + entity.getSort();
         System.out.println(query);
         PreparedStatement statement = DatabaseConnection.getInstance().getConnection().prepareStatement(query);
@@ -129,7 +130,7 @@ public class DatabaseBroker implements IDatabaseBroker {
 
     @Override
     public List<GeneralEntity> findRecordsWithObject(GeneralEntity entity, Object o) throws SQLException {
-        List<GeneralEntity> objects = new LinkedList<>();
+        List<GeneralEntity> objects = new ArrayList<>();
         String query = "SELECT * FROM " + entity.getClassName() + " WHERE " + entity.getExtraCondition(o) + " order by " + entity.getSort();
         System.out.println(query);
         PreparedStatement statement = DatabaseConnection.getInstance().getConnection().prepareStatement(query);

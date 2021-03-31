@@ -49,13 +49,6 @@ public class SOVratiMesto extends AbstractGenericOperation {
      *
      * @param entity - objekat klase Mesto.
      *
-     *@throws EntityNotFoundException
-     *@throws SQLException
-     * <ul>
-     * <li> SQLException - u slučaju da je greška na strani servera
-     * <li> EntityNotFoundException - ako sistem ne može da nadje mesto
-     * </ul>
-     *
      */
     @Override
     protected void execute(Object entity) throws EntityNotFoundException, SQLException {

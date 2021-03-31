@@ -10,12 +10,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.GeneralEntity;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Linija;
-import rs.stefanlezaic.zeleznice.srbije.lib.domen.Mesto;
-import rs.stefanlezaic.zeleznice.srbije.lib.domen.TipLinije;
-import rs.stefanlezaic.zeleznice.srbije.lib.domen.Voz;
 import rs.stefanlezaic.zeleznice.srbije.lib.kons.Konstante;
 import rs.stefanlezaic.zeleznice.srbije.lib.kons.ResponseStatus;
 import rs.stefanlezaic.zeleznice.srbije.server.kontroler.Kontroler;
@@ -64,43 +63,43 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
                         so.setOdgovor(soKlijentPrijavljivanje);
                         break;
                     case Konstante.VRATI_MEDJUSTANICE:
-                        ArrayList<MedjuStanica> listaMedjustanica = Kontroler.getInstance().vratiMISveMedjuStanice();
+                        List<GeneralEntity> listaMedjustanica = Kontroler.getInstance().vratiMISveMedjuStanice();
                         so.setOdgovor(listaMedjustanica);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_LINIJE:
-                        ArrayList<Linija> listaLinija = Kontroler.getInstance().vratiMiSveLinije();
+                        List<GeneralEntity> listaLinija = Kontroler.getInstance().vratiMiSveLinije();
                         so.setOdgovor(listaLinija);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_MESTA:
-                        ArrayList<Mesto> listaMesta = Kontroler.getInstance().vratiListuMesta();
+                        List<GeneralEntity> listaMesta = Kontroler.getInstance().vratiListuMesta();
                         so.setOdgovor(listaMesta);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_VOZOVE:
-                        ArrayList<Voz> listaVozova = Kontroler.getInstance().vratiMiSveVozove();
+                        List<GeneralEntity> listaVozova = Kontroler.getInstance().vratiMiSveVozove();
                         so.setOdgovor(listaVozova);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_TIPOVE_LINIJA:
-                        ArrayList<TipLinije> listaTipovaLinije = Kontroler.getInstance().vratiMiSveTipoveLinije();
+                        List<GeneralEntity> listaTipovaLinije = Kontroler.getInstance().vratiMiSveTipoveLinije();
                         so.setOdgovor(listaTipovaLinije);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_MEDJUSTANICE_LINIJE:
                         MedjuStanica m = (MedjuStanica) kz.getParametar();
-                        ArrayList<MedjuStanica> listaMedjustanicaZaLiniju = Kontroler.getInstance().vratiMiSveMedjustaniceZaLiniju(m);
+                        List<GeneralEntity> listaMedjustanicaZaLiniju = Kontroler.getInstance().vratiMiSveMedjustaniceZaLiniju(m);
                         so.setOdgovor(listaMedjustanicaZaLiniju);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_POLASKE:
-                        ArrayList<Polazak> listaPolazaka = Kontroler.getInstance().vratiListuPolazaka();
+                        List<GeneralEntity> listaPolazaka = Kontroler.getInstance().vratiListuPolazaka();
                         so.setStatus(ResponseStatus.OK);
                         so.setOdgovor(listaPolazaka);
                         break;
                     case Konstante.VRATI_STANICE:
-                        ArrayList<Stanica> listaStanica = Kontroler.getInstance().vratiMiSveStanice();
+                        List<GeneralEntity> listaStanica = Kontroler.getInstance().vratiMiSveStanice();
                         so.setStatus(ResponseStatus.OK);
                         so.setOdgovor(listaStanica);
                         break;
@@ -116,13 +115,13 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
                         break;
                     case Konstante.VRATI_REZERVACIJE_ZA_KLIJENTA:
                         Rezervacija kzRezervacijaZaKlijenta = (Rezervacija) kz.getParametar();
-                        ArrayList<Rezervacija> solistRezervacijaZaKlijenta = Kontroler.getInstance().vratiRezervacijeKlijenta(kzRezervacijaZaKlijenta);
+                        List<GeneralEntity> solistRezervacijaZaKlijenta = Kontroler.getInstance().vratiRezervacijeKlijenta(kzRezervacijaZaKlijenta);
                         so.setOdgovor(solistRezervacijaZaKlijenta);
                         so.setStatus(ResponseStatus.OK);
                         break;
                     case Konstante.VRATI_REZERVACIJE_ZA_POLAZAK:
                         Rezervacija kzRezervacijaZaPolazak = (Rezervacija) kz.getParametar();
-                        ArrayList<Rezervacija> listaRezervacijaZaPolazak = Kontroler.getInstance().vratiRezervacijePolaska(kzRezervacijaZaPolazak);
+                        List<GeneralEntity> listaRezervacijaZaPolazak = Kontroler.getInstance().vratiRezervacijePolaska(kzRezervacijaZaPolazak);
                         so.setOdgovor(listaRezervacijaZaPolazak);
                         so.setStatus(ResponseStatus.OK);
                         break;

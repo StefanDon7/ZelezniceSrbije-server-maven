@@ -15,8 +15,6 @@ import rs.stefanlezaic.zeleznice.srbije.lib.domen.Rezervacija;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Stanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.TipLinije;
 import rs.stefanlezaic.zeleznice.srbije.lib.domen.Voz;
-import rs.stefanlezaic.zeleznice.srbije.lib.exception.InsertEntityException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,124 +71,74 @@ public class Kontroler {
         return instanca;
     }
 
-    public ArrayList<Polazak> vratiMiSvePolaske(Date datum) throws Exception {
+    public List<GeneralEntity> vratiMiSvePolaske(Date datum) throws Exception {
         AbstractGenericOperation op6 = new SOVratiSvePolaske();
         op6.templateExecute(new Polazak());
         List<GeneralEntity> lista = ((SOVratiSvePolaske) op6).getPolasci();
-        ArrayList<Polazak> listaPolazaka = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Polazak p = (Polazak) generalEntity;
-            listaPolazaka.add(p);
-        }
-        return listaPolazaka;
+        return lista;
     }
 
-    public ArrayList<Stanica> vratiMiSveStanice() throws Exception {
+    public List<GeneralEntity> vratiMiSveStanice() throws Exception {
         AbstractGenericOperation op5 = new SOVratiSveStanice();
         op5.templateExecute(new Stanica());
         List<GeneralEntity> lista = ((SOVratiSveStanice) op5).getStanice();
-        ArrayList<Stanica> listaStanica = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Stanica s = (Stanica) generalEntity;
-            listaStanica.add(s);
-        }
-        return listaStanica;
+        return lista;
     }
 
-    public ArrayList<Klijent> vratiMiSveKlijente() throws Exception {
+    public List<GeneralEntity> vratiMiSveKlijente() throws Exception {
         AbstractGenericOperation op7 = new SOVratiSveKlijente();
         op7.templateExecute(new Klijent());
         List<GeneralEntity> lista = ((SOVratiSveKlijente) op7).getKlijenti();
-        ArrayList<Klijent> listaKlijenta = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Klijent k = (Klijent) generalEntity;
-            listaKlijenta.add(k);
-        }
-        return listaKlijenta;
+        return lista;
     }
 
-    public ArrayList<Linija> vratiMiSveLinije() throws Exception {
+    public List<GeneralEntity> vratiMiSveLinije() throws Exception {
         AbstractGenericOperation op6 = new SOVratiSveLinije();
         op6.templateExecute(new Linija());
         List<GeneralEntity> lista = ((SOVratiSveLinije) op6).getLinije();
-        ArrayList<Linija> listaLinija = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Linija l = (Linija) generalEntity;
-            listaLinija.add(l);
-        }
-        return listaLinija;
+        return lista;
     }
 
-    public ArrayList<TipLinije> vratiMiSveTipoveLinije() throws Exception {
+    public List<GeneralEntity> vratiMiSveTipoveLinije() throws Exception {
         AbstractGenericOperation op6 = new SOVratiSveTipoveLinija();
         op6.templateExecute(new TipLinije());
-        ArrayList<TipLinije> listaTipovaLinija = new ArrayList<>();
         List<GeneralEntity> lista = ((SOVratiSveTipoveLinija) op6).getTipoviLinija();
-        for (GeneralEntity generalEntity : lista) {
-            TipLinije tp = (TipLinije) generalEntity;
-            listaTipovaLinija.add(tp);
-        }
-        return listaTipovaLinija;
+        return lista;
     }
 
-    public ArrayList<Voz> vratiMiSveVozove() throws Exception {
+    public List<GeneralEntity> vratiMiSveVozove() throws Exception {
         AbstractGenericOperation op6 = new SOVratiSveVozove();
         op6.templateExecute(new Voz());
-        ArrayList<Voz> listaVozova = new ArrayList<>();
         List<GeneralEntity> lista = ((SOVratiSveVozove) op6).getVozovi();
-        for (GeneralEntity generalEntity : lista) {
-            Voz v = (Voz) generalEntity;
-            listaVozova.add(v);
-        }
-        return listaVozova;
+        return lista;
     }
 
-    public ArrayList<Mesto> vratiListuMesta() throws Exception {
+    public List<GeneralEntity> vratiListuMesta() throws Exception {
         AbstractGenericOperation op3 = new SOVratiSvaMesta();
         op3.templateExecute(new Mesto());
-        ArrayList<Mesto> listaMesta = new ArrayList<>();
         List<GeneralEntity> lista = ((SOVratiSvaMesta) op3).getMesta();
-        for (GeneralEntity generalEntity : lista) {
-            Mesto m = (Mesto) generalEntity;
-            listaMesta.add(m);
-        }
-        return listaMesta;
+        return lista;
     }
 
-    public ArrayList<Polazak> vratiListuPolazaka() throws Exception {
+    public List<GeneralEntity> vratiListuPolazaka() throws Exception {
         AbstractGenericOperation op6 = new SOVratiSvePolaske();
         op6.templateExecute(new Polazak());
         List<GeneralEntity> lista = ((SOVratiSvePolaske) op6).getPolasci();
-        ArrayList<Polazak> listaPolazaka = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Polazak p = (Polazak) generalEntity;
-            listaPolazaka.add(p);
-        }
-        return listaPolazaka;
+        return lista;
     }
 
-    public ArrayList<Polazak> vratiListuPolazaka(String upit) throws Exception {
+    public List<GeneralEntity> vratiListuPolazaka(String upit) throws Exception {
         AbstractGenericOperation op6 = new SOVratiSvePolaske();
         op6.templateExecute(new Polazak());
         List<GeneralEntity> lista = ((SOVratiSvePolaske) op6).getPolasci();
-        ArrayList<Polazak> listaPolazaka = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Polazak p = (Polazak) generalEntity;
-            listaPolazaka.add(p);
-        }
-        return listaPolazaka;
+        return lista;
     }
 
-    public ArrayList<Polazak> vratiMiPolaskeZaDatum(Polazak p) throws Exception {
+    public List<GeneralEntity> vratiMiPolaskeZaDatum(Polazak p) throws Exception {
         AbstractGenericOperation op = new SOVratiPolazakZaDatum();
         op.templateExecute(p);
         List<GeneralEntity> lista = ((SOVratiPolazakZaDatum) op).getPolasci();
-        ArrayList<Polazak> listaPolazaka = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Polazak p1 = (Polazak) generalEntity;
-            listaPolazaka.add(p1);
-        }
-        return listaPolazaka;
+        return lista;
     }
 
     public Klijent vratiMiKlijenta(Klijent klijent) throws Exception {
@@ -294,28 +242,18 @@ public class Kontroler {
         return (Rezervacija) ((SOVratiRezervaciju) op7).getRezervacija();
     }
 
-    public ArrayList<Rezervacija> vratiRezervacijePolaska(Rezervacija r) throws Exception {
+    public List<GeneralEntity> vratiRezervacijePolaska(Rezervacija r) throws Exception {
         AbstractGenericOperation op7 = new SOVratiRezervacijeZaPolazak();
         op7.templateExecute(r);
         List<GeneralEntity> lista = ((SOVratiRezervacijeZaPolazak) op7).getRezervacije();
-        ArrayList<Rezervacija> listaRezervacija = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Rezervacija rezervacija = (Rezervacija) generalEntity;
-            listaRezervacija.add(rezervacija);
-        }
-        return listaRezervacija;
+        return lista;
     }
 
-    public ArrayList<Rezervacija> vratiRezervacijeKlijenta(Rezervacija r) throws Exception {
+    public List<GeneralEntity> vratiRezervacijeKlijenta(Rezervacija r) throws Exception {
         AbstractGenericOperation op7 = new SOVratiRezervacijeZaKlijenta();
         op7.templateExecute(r);
         List<GeneralEntity> lista = ((SOVratiRezervacijeZaKlijenta) op7).getRezervacije();
-        ArrayList<Rezervacija> listaRezervacija = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            Rezervacija rezervacija = (Rezervacija) generalEntity;
-            listaRezervacija.add(rezervacija);
-        }
-        return listaRezervacija;
+        return lista;
     }
 
     public Stanica vratiStanicuNaOsnovuNazivaIMesta(Stanica s) throws Exception {
@@ -336,28 +274,18 @@ public class Kontroler {
         return (Klijent) ((SOVratiKlijentaBezPrimarnogKljuca) op7).getKlijent();
     }
 
-    public ArrayList<MedjuStanica> vratiMISveMedjuStanice() throws Exception {
+    public List<GeneralEntity> vratiMISveMedjuStanice() throws Exception {
         AbstractGenericOperation op = new SOVratiSveMedjustanice();
         op.templateExecute(new MedjuStanica());
         List<GeneralEntity> lista = ((SOVratiSveMedjustanice) op).getMedjustanice();
-        ArrayList<MedjuStanica> listaMedjustanica = new ArrayList<>();
-        for (GeneralEntity generalEntity : lista) {
-            MedjuStanica medjuStanica = (MedjuStanica) generalEntity;
-            listaMedjustanica.add(medjuStanica);
-        }
-        return listaMedjustanica;
+        return lista;
     }
 
-    public ArrayList<MedjuStanica> vratiMiSveMedjustaniceZaLiniju(MedjuStanica medjustanica) throws Exception {
+    public List<GeneralEntity> vratiMiSveMedjustaniceZaLiniju(MedjuStanica medjustanica) throws Exception {
         AbstractGenericOperation op5 = new SOVratiSveMedjustaniceZaLiniju();
         op5.templateExecute(medjustanica);
-        ArrayList<MedjuStanica> listaMedjuStanica = new ArrayList<>();
         List<GeneralEntity> lista = ((SOVratiSveMedjustaniceZaLiniju) op5).getMedjustanice();
-        for (GeneralEntity generalEntity : lista) {
-            MedjuStanica m = (MedjuStanica) generalEntity;
-            listaMedjuStanica.add(m);
-        }
-        return listaMedjuStanica;
+        return lista;
     }
 
 }
