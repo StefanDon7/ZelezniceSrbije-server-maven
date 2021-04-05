@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.Polazak;
 import rs.stefanlezaic.zeleznice.srbije.server.storage.database.connection.DatabaseConnection;
 
 public class DatabaseBroker implements IDatabaseBroker {
@@ -116,7 +116,7 @@ public class DatabaseBroker implements IDatabaseBroker {
             throw new UpdateEntityException("Update query not executed");
         }
     }
-
+    
     private void executeUpdate(String query) throws SQLException, UpdateException {
         System.out.println(query);
         Statement st;
@@ -140,5 +140,19 @@ public class DatabaseBroker implements IDatabaseBroker {
         }
         return objects;
     }
+    
+    @Override
+    public List<GeneralEntity> findAllDeparture(GeneralEntity entity,Polazak polazak) throws SQLException{
+        List<GeneralEntity> objects = new ArrayList<>();
+        String query=polazak.getFullQuery();
+        System.out.println(query);
+        PreparedStatement statement = DatabaseConnection.getInstance().getConnection().prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            objects.add(entity.getNewRecord(rs));
+        }
+        return objects;
+    }
+
 
 }

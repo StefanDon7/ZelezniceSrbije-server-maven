@@ -93,10 +93,22 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
                         so.setOdgovor(listaMedjustanicaZaLiniju);
                         so.setStatus(ResponseStatus.OK);
                         break;
-                    case Konstante.VRATI_POLASKE:
-                        List<GeneralEntity> listaPolazaka = Kontroler.getInstance().vratiListuPolazaka();
+                    case Konstante.VRATI_POLASKE_ZA_DATUM:
+                        Polazak polazakSaDatumom = (Polazak) kz.getParametar();
+                        List<GeneralEntity> listaPolazaka = Kontroler.getInstance().vratiMiPolaskeZaDatum(polazakSaDatumom);
                         so.setStatus(ResponseStatus.OK);
                         so.setOdgovor(listaPolazaka);
+                        break;
+                    case Konstante.VRATI_POLASKE:
+                        List<GeneralEntity> sviPolasci = Kontroler.getInstance().vratiSvePolaske();
+                        so.setStatus(ResponseStatus.OK);
+                        so.setOdgovor(sviPolasci);
+                        break;
+                    case Konstante.VRATI_POLASKE_ZA_POCETNU_I_KRAJNJU_STANICU:
+                        Polazak p = (Polazak) kz.getParametar();
+                        List<GeneralEntity> listaPolazakaZaPocentuIKrajnjuStanicu = Kontroler.getInstance().vratiListuPolazakaZaPocetnuIKrajnjuStanicu(p);
+                        so.setStatus(ResponseStatus.OK);
+                        so.setOdgovor(listaPolazakaZaPocentuIKrajnjuStanicu);
                         break;
                     case Konstante.VRATI_STANICE:
                         List<GeneralEntity> listaStanica = Kontroler.getInstance().vratiMiSveStanice();

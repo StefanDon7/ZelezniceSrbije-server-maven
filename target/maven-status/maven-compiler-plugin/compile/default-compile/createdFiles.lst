@@ -8,6 +8,7 @@ rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOIzmeniMedjustanicu.clas
 rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiLiniju.class
 rs\stefanlezaic\zeleznice\srbije\server\soVoz\SOVratiSveVozove.class
 rs\stefanlezaic\zeleznice\srbije\server\soRezervacija\SOVratiRezervaciju.class
+rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu.class
 rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiSveLinije.class
 rs\stefanlezaic\zeleznice\srbije\server\soMesta\SOVratiMesto.class
 rs\stefanlezaic\zeleznice\srbije\server\storage\database\connection\DatabaseConnection.class

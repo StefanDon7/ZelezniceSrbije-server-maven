@@ -9,6 +9,7 @@ C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zelezni
 C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\kontroler\Kontroler.java
 C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soKlijent\SOVratiSveKlijente.java
 C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOObrisiPolazak.java
+C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu.java
 C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soStanica\SOVratiStanicuBezPrimarnogKljuca.java
 C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soKlijent\SOIzmeniKlijenta.java
 C:\2.NetBeans\ZelezniceSrbije-server-maven\src\main\java\rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiSveLinije.java

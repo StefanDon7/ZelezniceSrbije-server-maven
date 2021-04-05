@@ -7,6 +7,7 @@ import rs.stefanlezaic.zeleznice.srbije.lib.exception.InsertEntityException;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.UpdateEntityException;
 import java.sql.SQLException;
 import java.util.List;
+import rs.stefanlezaic.zeleznice.srbije.lib.domen.Polazak;
 
 public interface IDatabaseBroker {
    
@@ -19,7 +20,9 @@ public interface IDatabaseBroker {
     List<GeneralEntity> findRecords(GeneralEntity entity, GeneralEntity parent) throws SQLException;
 
     List<GeneralEntity> findRecordsWithObject(GeneralEntity entity, Object o) throws SQLException;
-
+    
+    List<GeneralEntity> findAllDeparture(GeneralEntity entity,Polazak p) throws SQLException;
+    
     void insertRecord(GeneralEntity entity) throws SQLException, InsertEntityException;
 
     void deleteRecord(GeneralEntity entity) throws SQLException, DeleteEntityException;

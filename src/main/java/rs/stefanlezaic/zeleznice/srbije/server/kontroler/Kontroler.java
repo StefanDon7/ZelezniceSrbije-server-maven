@@ -41,6 +41,7 @@ import rs.stefanlezaic.zeleznice.srbije.server.soPolazak.SOObrisiPolazak;
 import rs.stefanlezaic.zeleznice.srbije.server.soPolazak.SOUnesiPolazak;
 import rs.stefanlezaic.zeleznice.srbije.server.soPolazak.SOVratiPolazakZaDatum;
 import rs.stefanlezaic.zeleznice.srbije.server.soPolazak.SOVratiSvePolaske;
+import rs.stefanlezaic.zeleznice.srbije.server.soPolazak.SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu;
 import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOObrisiRezervaciju;
 import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOUnesiRezervaciju;
 import rs.stefanlezaic.zeleznice.srbije.server.soRezervacija.SOVratiRezervacijeZaKlijenta;
@@ -120,7 +121,7 @@ public class Kontroler {
         return lista;
     }
 
-    public List<GeneralEntity> vratiListuPolazaka() throws Exception {
+    public List<GeneralEntity> vratiSvePolaske() throws Exception {
         AbstractGenericOperation op6 = new SOVratiSvePolaske();
         op6.templateExecute(new Polazak());
         List<GeneralEntity> lista = ((SOVratiSvePolaske) op6).getPolasci();
@@ -138,6 +139,13 @@ public class Kontroler {
         AbstractGenericOperation op = new SOVratiPolazakZaDatum();
         op.templateExecute(p);
         List<GeneralEntity> lista = ((SOVratiPolazakZaDatum) op).getPolasci();
+        return lista;
+    }
+
+    public List<GeneralEntity> vratiListuPolazakaZaPocetnuIKrajnjuStanicu(Polazak p) throws Exception {
+        AbstractGenericOperation abg = new SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu();
+        abg.templateExecute(p);
+        List<GeneralEntity> lista = ((SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu) abg).getPolasci();
         return lista;
     }
 
