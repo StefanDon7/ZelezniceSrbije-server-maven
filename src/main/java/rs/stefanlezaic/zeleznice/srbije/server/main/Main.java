@@ -19,12 +19,5 @@ public class Main {
         PokreniServerNit psn = new PokreniServerNit();
         psn.start();
   
-//        AbstractGenericOperation abg=new SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu();
-//        abg.templateExecute(new Polazak(-1, "", new Date(), null, new Linija(-1, null, -1, -1, new Stanica(-1, "ZEDNIK", null), new Stanica(-1, "VRBAS", null), null), null));
-//         List<GeneralEntity> lista = ((SOVratiSvePolaskeZaDatumPocetnuKrajnuStanicu) abg).getPolasci();
-//        for (GeneralEntity generalEntity : lista) {
-//            Polazak p=(Polazak) generalEntity;
-//            System.out.println(p.toString());
-//        }
     }
 }

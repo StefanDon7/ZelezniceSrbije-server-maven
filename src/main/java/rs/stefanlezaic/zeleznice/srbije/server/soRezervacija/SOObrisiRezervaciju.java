@@ -10,22 +10,24 @@ import rs.stefanlezaic.zeleznice.srbije.lib.domen.Rezervacija;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.DeleteEntityException;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.InvalidProductException;
 import java.sql.SQLException;
+import java.util.Date;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
- * Klasa SOObrisiRezervaciju koja nasledjuje abstraktnu klasu AbstractGenericOperation.
- * Brise rezervaciju iz baze.
+ * Klasa SOObrisiRezervaciju koja nasledjuje abstraktnu klasu
+ * AbstractGenericOperation. Brise rezervaciju iz baze.
  *
  * @author sleza
  */
 public class SOObrisiRezervaciju extends AbstractGenericOperation {
-      /**
+
+    /**
      * Proverava da li je objekat klase rezervacija i ako nije baca exception.
      *
      * @param entity - objekat klase Rezervacija.
      *
      * @throws Exception u slučaju da je kao parametar dat objekat druge klase.
-     * 
+     *
      */
     @Override
     protected void validate(Object entity) throws Exception {
@@ -36,9 +38,13 @@ public class SOObrisiRezervaciju extends AbstractGenericOperation {
         if (r.getKlijent().getKlijentID() <= 0 || r.getPolazak().getPolazakID() <= 0) {
             throw new InvalidProductException("Pogresni parametri!");
         }
-
+        Date danasnji = new Date();
+         if (danasnji.after(r.getPolazak().getDatumPolaska())) {
+            throw new InvalidProductException("Polazak je vec realizovan! Ne moze te ga otkazati!");
+        }
     }
-     /**
+
+    /**
      * Izvršava upit(DELETE) nad bazom podataka, baca dve vrste izuzetka:
      *
      * @param entity - objekat klase Rezervacija.

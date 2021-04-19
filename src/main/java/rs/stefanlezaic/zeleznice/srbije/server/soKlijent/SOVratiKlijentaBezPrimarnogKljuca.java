@@ -56,7 +56,7 @@ public class SOVratiKlijentaBezPrimarnogKljuca extends AbstractGenericOperation 
         } catch (SQLException ex) {
             throw new SQLException("Greška na strani servera");
         } catch (EntityNotFoundException ex) {
-            throw new EntityNotFoundException("Pogresni parametri!");
+            throw new EntityNotFoundException("Sistem ne moze da pronađe korisnika!");
         }
     }
     /**
