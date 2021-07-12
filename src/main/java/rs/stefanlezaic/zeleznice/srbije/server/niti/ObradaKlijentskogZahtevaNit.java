@@ -38,11 +38,14 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
     public void run() {
         try {
             handleRequest();
-        } catch (IOException ex) {
+        } catch (java.net.SocketException ex) {
+            Logger.getLogger(PokreniServerNit.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Klijent se odjavio!");
+        }  catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskogZahtevaNit.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ObradaKlijentskogZahtevaNit.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
     private void handleRequest() throws IOException, ClassNotFoundException {
