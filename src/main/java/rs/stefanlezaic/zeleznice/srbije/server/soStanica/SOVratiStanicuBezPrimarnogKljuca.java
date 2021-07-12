@@ -11,6 +11,7 @@ import rs.stefanlezaic.zeleznice.srbije.lib.domen.Stanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.EntityNotFoundException;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.InvalidProductException;
 import java.sql.SQLException;
+import rs.stefanlezaic.zeleznice.srbije.lib.exception.ParametarsException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
@@ -57,7 +58,7 @@ public class SOVratiStanicuBezPrimarnogKljuca extends AbstractGenericOperation {
      *
      */
     @Override
-    protected void execute(Object entity) throws EntityNotFoundException, SQLException {
+    protected void execute(Object entity) throws EntityNotFoundException, SQLException, ParametarsException {
         try {
             stanica = databaseBroker.findRecordNoPrimaryKey((Stanica) entity);
             Stanica s = (Stanica) stanica;

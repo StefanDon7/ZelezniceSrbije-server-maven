@@ -11,6 +11,7 @@ import rs.stefanlezaic.zeleznice.srbije.lib.domen.Stanica;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.EntityNotFoundException;
 import rs.stefanlezaic.zeleznice.srbije.lib.exception.InvalidProductException;
 import java.sql.SQLException;
+import rs.stefanlezaic.zeleznice.srbije.lib.exception.ParametarsException;
 import rs.stefanlezaic.zeleznice.srbije.server.so.AbstractGenericOperation;
 
 /**
@@ -56,7 +57,7 @@ public class SOVratiStanicu extends AbstractGenericOperation {
      *
      */
     @Override
-    protected void execute(Object entity) throws SQLException, EntityNotFoundException {
+    protected void execute(Object entity) throws SQLException, EntityNotFoundException, ParametarsException {
         try {
             stanica = databaseBroker.findRecord((Stanica) entity);
             Stanica s = (Stanica) stanica;
