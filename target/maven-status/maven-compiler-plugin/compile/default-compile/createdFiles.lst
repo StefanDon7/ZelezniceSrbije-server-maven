@@ -3,6 +3,7 @@ rs\stefanlezaic\zeleznice\srbije\server\main\Main.class
 rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOVratiSvePolaske.class
 rs\stefanlezaic\zeleznice\srbije\server\soTipLinije\SOVratiTipLinije.class
 rs\stefanlezaic\zeleznice\srbije\server\soTipLinije\SOVratiSveTipoveLinija.class
+rs\stefanlezaic\zeleznice\srbije\server\soStanica\SOVratiStanicuBezPrimarnogKljuca.class
 rs\stefanlezaic\zeleznice\srbije\server\soMedjustanica\SOIzmeniMedjustanicu.class
 rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOVratiLiniju.class
 rs\stefanlezaic\zeleznice\srbije\server\soVoz\SOVratiSveVozove.class
@@ -18,6 +19,7 @@ rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOUnesiLiniju.class
 rs\stefanlezaic\zeleznice\srbije\server\soPolazak\SOUnesiPolazak.class
 rs\stefanlezaic\zeleznice\srbije\server\soRezervacija\SOVratiRezervacijeZaPolazak.class
 rs\stefanlezaic\zeleznice\srbije\server\niti\ObradaKlijentskogZahtevaNit.class
+rs\stefanlezaic\zeleznice\srbije\server\soStanica\SOVratiStanicu.class
 rs\stefanlezaic\zeleznice\srbije\server\soStanica\SOVratiSveStanice.class
 rs\stefanlezaic\zeleznice\srbije\server\soVoz\SOVratiVoz.class
 rs\stefanlezaic\zeleznice\srbije\server\soLinija\SOObrisiLiniju.class
