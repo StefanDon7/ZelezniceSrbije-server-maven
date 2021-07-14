@@ -39,7 +39,6 @@ public class ObradaKlijentskogZahtevaNit extends Thread {
         try {
             handleRequest();
         } catch (java.net.SocketException ex) {
-            Logger.getLogger(PokreniServerNit.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Klijent se odjavio!");
         }  catch (IOException ex) {
             Logger.getLogger(ObradaKlijentskogZahtevaNit.class.getName()).log(Level.SEVERE, null, ex);
